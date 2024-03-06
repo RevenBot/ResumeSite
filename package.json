@@ -17,6 +17,8 @@
     "@react-three/fiber": "^8.15.18",
     "@types/three": "^0.162.0",
     "leva": "^0.9.35",
+    "primeflex": "^3.3.1",
+    "primereact": "^10.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "three": "^0.162.0"

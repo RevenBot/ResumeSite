@@ -1,7 +1,12 @@
-import Background from "./components/background/Background"
+import Overlay from "./components/Overlay/Overlay";
+import Background from "./components/background/Background";
+import "/node_modules/primeflex/primeflex.css";
 
 export const App = () => (
-  <Background />
-)
+  <>
+    <Background />
+    <Overlay />
+  </>
+);
 
-export default App
+export default App;
