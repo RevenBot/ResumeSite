@@ -1,6 +1,9 @@
-.card {
-  background: var(--surface-card);
-  padding: 2rem;
-  border-radius: 10px;
-  margin-bottom: 1rem;
+.card,
+.p-terminal {
+  background-color: #24173105;
+  color: var(--primary-300);
+  border: 0;
+  padding: 0;
+  width: 400px;
+  max-height: 150px;
 }

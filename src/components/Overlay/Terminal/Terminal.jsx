@@ -1,96 +1,191 @@
-import { useEffect, useState } from "react";
-import { Terminal } from "primereact/terminal";
-import { TerminalService } from "primereact/terminalservice";
+import React, { useCallback, useEffect } from "react";
+import {
+  ReactTerminal,
+  TerminalContext,
+  TerminalContextProvider,
+} from "react-terminal";
 
-export default function TerminalDemo() {
-  const [show, setShow] = useState(true);
+function Terminal() {
+  const { setBufferedContent, setTemporaryContent } =
+    React.useContext(TerminalContext);
 
-  const commandHandler = (text) => {
-    let response;
-    let argsIndex = text.indexOf(" ");
-    let command = argsIndex !== -1 ? text.substring(0, argsIndex) : text;
+  const commands = {
+    help: (
+      <span>
+        <strong>clear</strong> - clears the console. <br />
+      </span>
+    ),
 
-    switch (command) {
-      case "date":
-        response = "Today is " + new Date().toDateString();
-        response = "✓ " + response;
-        break;
+    wait: async (timeout) => {
+      setTemporaryContent("Waiting...");
+      await new Promise((resolve) =>
+        setTimeout(
+          () => {
+            resolve(void 0);
+          },
+          parseInt(timeout) * 10000,
+        ),
+      );
+      return "Over!";
+    },
 
-      case "greet":
-        response = "Hola " + text.substring(argsIndex + 1) + "!";
-        response = "✓ " + response;
-        break;
-
-      case "random":
-        response = Math.floor(Math.random() * 100);
-        response = "✓ " + response;
-        break;
-
-      case "clear":
-        response = null;
-        break;
-
-      default:
-        response = "x Unknown command: " + command;
-        break;
-    }
-
-    if (response) {
-      TerminalService.emit("response", response);
-    } else {
-      setShow(false);
-      TerminalService.emit("clear");
-    }
+    count_to: async (nb) => {
+      setTemporaryContent("Counting...");
+      nb = parseInt(nb);
+      await Promise.all(
+        new Array(nb).fill({}).map(
+          (_, index) =>
+            new Promise((resolve) => {
+              const timer = setTimeout(() => {
+                setBufferedContent((previous) => (
+                  <>
+                    {previous}
+                    <span>{index + 1}</span>
+                    {index + 1 < nb ? <br /> : ""}
+                  </>
+                ));
+                clearTimeout(timer);
+                resolve(void 0);
+              }, index * 1000);
+            }),
+        ),
+      );
+      return (
+        <>
+          <br />
+          Finished
+        </>
+      );
+    },
   };
+
+  const init = useCallback(async () => {
+    setBufferedContent(
+      <>
+        <span
+          style={{
+            color: "var(--green-700)",
+          }}
+        >
+          ➜{" "}
+        </span>
+        npm run build resumEsite --caos
+        <br />
+        <span
+          style={{
+            color: "var(--green-700)",
+          }}
+        >
+          ➜{" "}
+        </span>
+        vite v4.5.2 building for production...
+        <br />
+        <span
+          style={{
+            color: "var(--green-700)",
+          }}
+        >
+          ✓{"    "}
+        </span>
+        640 modules transformed.
+        <br />
+        <div className="flex w-full justify-content-between">
+          <div>
+            dist/
+            <span
+              style={{
+                color: "var(--green-700)",
+              }}
+            >
+              index.html
+            </span>
+          </div>
+          <div>0.46 kB │ gzip: 00.30 kB</div>
+        </div>
+        <div className="flex w-full justify-content-between">
+          <div>
+            dist/
+            <span
+              style={{
+                color: "var(--pink-700)",
+              }}
+            >
+              index.css
+            </span>
+          </div>
+          <div>0.62 kB │ gzip: 00.38 kB</div>
+        </div>
+        <div className="flex w-full justify-content-between">
+          <div>
+            dist/
+            <span
+              style={{
+                color: "var(--blue-700)",
+              }}
+            >
+              index.js
+            </span>
+          </div>
+          <div>104.63 kB │ gzip: 42.08 kB</div>
+        </div>
+        <br />
+        <span
+          style={{
+            color: "var(--green-700)",
+          }}
+        >
+          ✓{"    "}
+        </span>
+        built in 3.41
+        <br />
+      </>,
+    );
+  }, [setBufferedContent]);
 
   useEffect(() => {
-    TerminalService.on("command", commandHandler);
+    init();
+  }, [init]);
 
-    return () => {
-      TerminalService.off("command", commandHandler);
-    };
-  }, []);
-
-  const headerTerminal = () => {
-    if (show) {
-      return (
-        <p>
-          &gt; npm run build resumEsite --caos
-          <br />
-          &gt; resumEsite@0.0.0 build
-          <br />
-          {`vite v4.5.2 building for production...`}
-          <br />
-          {`✓ 640 modules transformed.`}
-          <br />
-          {`dist/index.html         0.46 kB │ gzip:     0.30 kB`}
-          <br />
-          {`✓ built in 3.41`}
-        </p>
-      );
-    }
-    return null;
-  };
+  const welcomeMessage = (
+    <span>
+      {`Type "help" for all available commands.`} <br />
+    </span>
+  );
 
   return (
     <div
       style={{
         position: "absolute",
-        top: 40,
-        left: 40,
+        top: 10,
+        width: "20%",
+        maxHeight: "200px",
       }}
-      className="card terminal-demo"
     >
-      {headerTerminal()}
-      <Terminal
-        prompt=">"
-        pt={{
-          root: "bg-gray-900 text-white border-round",
-          prompt: "text-gray-400 mr-2",
-          command: "text-primary-300",
-          response: "text-primary-300",
+      <ReactTerminal
+        showControlBar={false}
+        showControlButtons={false}
+        themes={{
+          "my-custom-theme": {
+            themeBGColor: "var(--surface-border)",
+            themePromptColor: "var(--green-700)",
+            themeColor: "var(--highlight-text-color)",
+          },
+        }}
+        theme="my-custom-theme"
+        welcomeMessage={welcomeMessage}
+        commands={commands}
+        prompt={"➜"}
+        defaultHandler={(command, commandArguments) => {
+          return `${command} passed on to default handler with arguments ${commandArguments}`;
         }}
       />
     </div>
+  );
+}
+export default function TerminalDemo() {
+  return (
+    <TerminalContextProvider>
+      <Terminal />
+    </TerminalContextProvider>
   );
 }

@@ -37,12 +37,12 @@ const Background = () => {
         intensity={1000000}
         position={[0, 0, 600]}
         penumbra={0.2}
-        color="red"
+        color="purple"
       />
       <mesh>
         <planeGeometry args={[1000, 1000]} />
         <meshStandardMaterial
-          color="#00ffff"
+          color="#00ff00"
           roughness={0.5}
           depthTest={false}
         />

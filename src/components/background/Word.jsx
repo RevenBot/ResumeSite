@@ -38,7 +38,7 @@ function Word({ children }) {
   // Tie component to the render-loop
   useFrame((state) => {
     ref.current.material.color.lerp(
-      color.set(hovered ? "#fa2720" : "#020000"),
+      color.set(hovered ? "#371F76" : "#020000"),
       0.1,
     );
 
