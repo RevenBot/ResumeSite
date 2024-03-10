@@ -4,17 +4,52 @@ import {
   TerminalContext,
   TerminalContextProvider,
 } from "react-terminal";
+import useStore from "../../../context/mode/store";
 
 function Terminal() {
   const { setBufferedContent, setTemporaryContent } =
     React.useContext(TerminalContext);
 
+  const { updateMode, switchMode } = useStore((state) => state);
+
   const commands = {
     help: (
       <span>
         <strong>clear</strong> - clears the console. <br />
+        <strong>mode</strong> - set site to caos or resume. <br />
       </span>
     ),
+    mode: (mode) => {
+      console.log(mode);
+      if (mode === "help") {
+        return (
+          <>
+            <div className="flex w-full justify-content-between">
+              <div className="w-full">mode</div>
+              <div className="w-full">to switch mode</div>
+            </div>
+            <div className="flex w-full justify-content-between">
+              <div className="w-full">mode caos</div>
+              <div className="w-full">set mode to caos </div>
+            </div>
+            <div className="flex w-full justify-content-between">
+              <div className="w-full">mode resume</div>
+              <div className="w-full">set mode to resume </div>
+            </div>
+          </>
+        );
+      }
+      if (mode === "caos") {
+        updateMode(true);
+        return <>Set mode to caos</>;
+      } else if (mode === "resume") {
+        updateMode(false);
+        return <>Set mode to resumE</>;
+      } else {
+        switchMode();
+        return <>Switch mode</>;
+      }
+    },
 
     wait: async (timeout) => {
       setTemporaryContent("Waiting...");
@@ -158,7 +193,8 @@ function Terminal() {
         position: "absolute",
         top: 10,
         width: "20%",
-        maxHeight: "200px",
+        height: "inherit",
+        maxHeight: "300px",
       }}
     >
       <ReactTerminal

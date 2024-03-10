@@ -3,6 +3,7 @@ import SwarmObjects from "./SwarmObjects";
 import SwarmWords from "./SwarmWords";
 import { useMemo } from "react";
 import SwarmMonitors from "./SwarmMonitors";
+import useStore from "../../context/mode/store";
 
 const Background = () => {
   const words = useMemo(
@@ -23,6 +24,7 @@ const Background = () => {
     ],
     [],
   );
+  const mode = useStore((state) => state.caosMode);
   return (
     <Canvas
       linear
@@ -34,9 +36,9 @@ const Background = () => {
       <ambientLight intensity="0.01" />
       <pointLight distance={60} intensity={10000} color="lightblue" />
       <spotLight
-        intensity={1000000}
-        position={[0, 0, 600]}
-        penumbra={0.2}
+        intensity={400000}
+        position={[0, 0, 1000]}
+        penumbra={0.1}
         color="purple"
       />
       <mesh>
@@ -47,9 +49,13 @@ const Background = () => {
           depthTest={false}
         />
       </mesh>
-      <SwarmObjects count={1000} />
-      <SwarmWords words={words} />
-      <SwarmMonitors words={words} />
+      {mode && (
+        <>
+          <SwarmObjects count={1000} />
+          <SwarmWords words={words} />
+          <SwarmMonitors words={words} />
+        </>
+      )}
     </Canvas>
   );
 };
