@@ -5,6 +5,10 @@ import {
   TerminalContextProvider,
 } from "react-terminal";
 import useStore from "../../../context/mode/store";
+import "./Terminal.css";
+import Help from "./HelpCommand";
+import ModeHelp from "./ModeHelp";
+import InitCommand from "./InitCommand";
 
 function Terminal() {
   const { setBufferedContent, setTemporaryContent } =
@@ -13,31 +17,10 @@ function Terminal() {
   const { updateMode, switchMode } = useStore((state) => state);
 
   const commands = {
-    help: (
-      <span>
-        <strong>clear</strong> - clears the console. <br />
-        <strong>mode</strong> - set site to caos or resume. <br />
-      </span>
-    ),
+    help: () => <Help />,
     mode: (mode) => {
-      console.log(mode);
       if (mode === "help") {
-        return (
-          <>
-            <div className="flex w-full justify-content-between">
-              <div className="w-full">mode</div>
-              <div className="w-full">to switch mode</div>
-            </div>
-            <div className="flex w-full justify-content-between">
-              <div className="w-full">mode caos</div>
-              <div className="w-full">set mode to caos </div>
-            </div>
-            <div className="flex w-full justify-content-between">
-              <div className="w-full">mode resume</div>
-              <div className="w-full">set mode to resume </div>
-            </div>
-          </>
-        );
+        return <ModeHelp />;
       }
       if (mode === "caos") {
         updateMode(true);
@@ -95,86 +78,7 @@ function Terminal() {
   };
 
   const init = useCallback(async () => {
-    setBufferedContent(
-      <>
-        <span
-          style={{
-            color: "var(--green-700)",
-          }}
-        >
-          ➜{" "}
-        </span>
-        npm run build resumEsite --caos
-        <br />
-        <span
-          style={{
-            color: "var(--green-700)",
-          }}
-        >
-          ➜{" "}
-        </span>
-        vite v4.5.2 building for production...
-        <br />
-        <span
-          style={{
-            color: "var(--green-700)",
-          }}
-        >
-          ✓{"    "}
-        </span>
-        640 modules transformed.
-        <br />
-        <div className="flex w-full justify-content-between">
-          <div>
-            dist/
-            <span
-              style={{
-                color: "var(--green-700)",
-              }}
-            >
-              index.html
-            </span>
-          </div>
-          <div>0.46 kB │ gzip: 00.30 kB</div>
-        </div>
-        <div className="flex w-full justify-content-between">
-          <div>
-            dist/
-            <span
-              style={{
-                color: "var(--pink-700)",
-              }}
-            >
-              index.css
-            </span>
-          </div>
-          <div>0.62 kB │ gzip: 00.38 kB</div>
-        </div>
-        <div className="flex w-full justify-content-between">
-          <div>
-            dist/
-            <span
-              style={{
-                color: "var(--blue-700)",
-              }}
-            >
-              index.js
-            </span>
-          </div>
-          <div>104.63 kB │ gzip: 42.08 kB</div>
-        </div>
-        <br />
-        <span
-          style={{
-            color: "var(--green-700)",
-          }}
-        >
-          ✓{"    "}
-        </span>
-        built in 3.41
-        <br />
-      </>,
-    );
+    setBufferedContent(<InitCommand />);
   }, [setBufferedContent]);
 
   useEffect(() => {
@@ -188,15 +92,7 @@ function Terminal() {
   );
 
   return (
-    <div
-      style={{
-        position: "absolute",
-        top: 10,
-        width: "20%",
-        height: "inherit",
-        maxHeight: "300px",
-      }}
-    >
+    <div className="absolute xl:top-0 xl:left-0 lg:top-0 lg:left-0 md:top-0 sm:top-0 top-0 sm:text-xs xl:w-4 lg:w-3 sm:w-12 w-12 z-1 h-15rem max-h-full">
       <ReactTerminal
         showControlBar={false}
         showControlButtons={false}
@@ -212,7 +108,12 @@ function Terminal() {
         commands={commands}
         prompt={"➜"}
         defaultHandler={(command, commandArguments) => {
-          return `${command} passed on to default handler with arguments ${commandArguments}`;
+          return (
+            <div style={{ lineBreak: "anywhere" }}>
+              {command} passed on to default handler with arguments
+              {commandArguments}
+            </div>
+          );
         }}
       />
     </div>

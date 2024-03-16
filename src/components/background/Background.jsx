@@ -34,10 +34,10 @@ const Background = () => {
       camera={{ fov: 100, position: [0, 0, 30] }}
     >
       <ambientLight intensity="0.01" />
-      <pointLight distance={60} intensity={10000} color="lightblue" />
+      <pointLight distance={60} intensity={100000} color="lightblue" />
       <spotLight
         intensity={400000}
-        position={[0, 0, 1000]}
+        position={[0, 0, 300]}
         penumbra={0.1}
         color="purple"
       />

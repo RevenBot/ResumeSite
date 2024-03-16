@@ -1,9 +1,5 @@
-.card,
-.p-terminal {
-  background-color: #24173105;
-  color: var(--primary-300);
-  border: 0;
-  padding: 0;
-  width: 400px;
-  max-height: 150px;
+@media screen and (max-width: 576px) {
+  #terminalEditor {
+    font-size: 0.75rem !important;
+  }
 }

@@ -12,7 +12,6 @@ const ThemeSwitcher = () => {
 
   const { i18n } = useTranslation();
   const [selectedLang, setSelectedLang] = useState(i18n.language);
-  console.log(selectedLang, "start", i18n.languages);
   const changeMyTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
     changeTheme(
@@ -27,21 +26,12 @@ const ThemeSwitcher = () => {
   };
 
   return (
-    <div
-      style={{
-        position: "absolute",
-        top: 0,
-        width: "100%",
-        color: "var(--primary-color)",
-      }}
-      className="flex align-items-center justify-content-end"
-    >
-      <div className="card flex justify-content-center">
+    <div className="absolute top-0 right-0 flex xl:align-items-center lg:align-items-center align-items-end justify-content-end text-primary z-2 xl:flex-row lg:flex-row flex-column">
+      <div className="">
         <Dropdown
           value={selectedLang}
           onChange={(e) => {
             setSelectedLang(e.value);
-            console.log(e.value);
             i18n.changeLanguage(e.value);
           }}
           options={i18n.languages}
@@ -57,7 +47,7 @@ const ThemeSwitcher = () => {
           }}
         />
       </div>
-      <div className="w-4rem h-4rem font-bold flex align-items-center justify-content-center p-4 border-round mr-3">
+      <div className="w-4rem h-4rem font-bold p-4 border-round">
         <i
           onClick={changeMyTheme}
           className={`dark:text-white pi ${iconClassName}`}
