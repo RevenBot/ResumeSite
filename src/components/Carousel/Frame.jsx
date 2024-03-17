@@ -14,8 +14,8 @@ extend(geometry);
 
 export function Frame({
   id,
-  name,
-  author,
+  title,
+  footer,
   bg,
   width = 1,
   height = 1.61803398875,
@@ -24,12 +24,11 @@ export function Frame({
 }) {
   const portal = useRef();
   const [, setLocation] = useLocation();
-  const [, params] = useRoute("/test/:id");
+  const [, params] = useRoute("/frame/:id");
   const [hovered, hover] = useState(false);
   useCursor(hovered);
   useFrame((state, dt) => {
     easing.damp(portal.current, "blend", params?.id === id ? 1 : 0, 0.2, dt);
-    console.log(params?.id);
   });
   return (
     <group {...props}>
@@ -41,7 +40,7 @@ export function Frame({
         position={[-0.375, 0.715, 0.01]}
         material-toneMapped={false}
       >
-        {name}
+        {title}
       </Text>
       <Text
         fontSize={0.1}
@@ -57,12 +56,12 @@ export function Frame({
         position={[0.0, -0.677, 0.01]}
         material-toneMapped={false}
       >
-        {author}
+        {footer}
       </Text>
       <mesh
         name={id}
         onDoubleClick={(e) => (
-          e.stopPropagation(), setLocation("/test/" + e.object.name)
+          e.stopPropagation(), setLocation("/frame/" + e.object.name)
         )}
         onPointerOver={(e) => hover(true)}
         onPointerOut={() => hover(false)}
@@ -73,6 +72,7 @@ export function Frame({
           events={params?.id === id}
           side={THREE.DoubleSide}
         >
+          <ambientLight intensity="1" />
           <color attach="background" args={[bg]} />
           {children}
         </MeshPortalMaterial>
@@ -86,7 +86,7 @@ export function RigIN({
   focus = new THREE.Vector3(0, 0, 0),
 }) {
   const { controls, scene } = useThree();
-  const [match, params] = useRoute("/test/:id");
+  const [match, params] = useRoute("/frame/:id");
   useEffect(() => {
     const active = scene.getObjectByName(params?.id);
     if (active) {

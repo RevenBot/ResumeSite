@@ -8,6 +8,7 @@ export const App = () => (
     <Overlay />
     <Switch>
       <Route path="/" component={Background} />
+      <Route path="/frame/:id" component={Background} />
 
       <Route path="/test/">
         <Test />
