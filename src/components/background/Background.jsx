@@ -27,11 +27,9 @@ const Background = () => {
   const mode = useStore((state) => state.caosMode);
   return (
     <Canvas
-      linear
-      flat
-      legacy
-      dpr={1}
-      camera={{ fov: 100, position: [0, 0, 30] }}
+      eventSource={document.getElementById("root")}
+      eventPrefix="client"
+      camera={{ fov: 75, position: [0, 0, 20] }}
     >
       <ambientLight intensity="0.01" />
       <pointLight distance={60} intensity={100000} color="lightblue" />
