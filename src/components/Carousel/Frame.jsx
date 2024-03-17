@@ -90,8 +90,8 @@ export function RigIN({
   useEffect(() => {
     const active = scene.getObjectByName(params?.id);
     if (active) {
-      active.parent.localToWorld(position.set(0, 0.5, 0.25));
-      active.parent.localToWorld(focus.set(0, 0, -2));
+      active.parent.localToWorld(position.set(0, 0, 10));
+      active.parent.localToWorld(focus.set(0, 0, 0));
     }
     controls?.setLookAt(...position.toArray(), ...focus.toArray(), true);
   });

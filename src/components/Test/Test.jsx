@@ -10,8 +10,8 @@ import {
 } from "@react-three/drei";
 import { easing } from "maath";
 import "./util";
-import { Frame, RigIN } from "../Frame/Frame";
 import { useRoute } from "wouter";
+import { Frame, RigIN } from "../Carousel/Frame";
 
 export const Test = () => {
   const [match, params] = useRoute("/test/:id");

@@ -98,7 +98,7 @@ function ScreenText({ invert, x = 1, y = 1.1, children, ...props }) {
 }
 
 function Screen({ frame, panel, children, ...props }) {
-  const { nodes } = useGLTF("computers_1-transformed.glb");
+  const { nodes } = useGLTF("/computers_1-transformed.glb?url");
   return (
     <group {...props}>
       <mesh scale={1} castShadow receiveShadow geometry={nodes[frame].geometry}>
