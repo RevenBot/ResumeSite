@@ -12,12 +12,12 @@ function SwarmObjects({
   const particles = useMemo(() => {
     const temp = [];
     for (let i = 0; i < count; i++) {
-      const t = Math.random() * 100;
-      const factor = 20 + Math.random() * 100;
+      const t = Math.random() * 200;
+      const factor = 20 + Math.random() * 200;
       const speed = 0.01 + Math.random() / 200;
-      const xFactor = -50 + Math.random() * 100;
-      const yFactor = -50 + Math.random() * 100;
-      const zFactor = -50 + Math.random() * 100;
+      const xFactor = -50 + Math.random() * 200;
+      const yFactor = -50 + Math.random() * 200;
+      const zFactor = -50 + Math.random() * 200;
       temp.push({ t, factor, speed, xFactor, yFactor, zFactor, mx: 0, my: 0 });
     }
     return temp;
