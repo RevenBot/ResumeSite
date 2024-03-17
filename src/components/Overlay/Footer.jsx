@@ -8,7 +8,7 @@ function Footer() {
   const [, setLocation] = useLocation();
   const mode = useStore((state) => state.caosMode);
   return (
-    <div className="absolute bottom-0 z-2 w-full flex flex-column">
+    <div className="absolute bottom-0 z-2 w-full flex flex-column bg-black-alpha-10">
       {!mode && (
         <div className=" w-full flex flex-row md:flex-row justify-content-between p-3 xl:text-lg lg:text-lg text-sm text-primary">
           <a
@@ -20,7 +20,7 @@ function Footer() {
             href="#"
             onClick={() => setLocation("/")}
           >
-            {match ? "< back" : "double click to enter portal"}
+            {match ? `<  ${t("back")}` : t("dbclick")}
           </a>
         </div>
       )}

@@ -1,3 +1,5 @@
 {
-  "work" : "Lavori in corso"
+  "work" : "Lavori in corso",
+  "back" : "indietro",
+  "dbclick": "doppio click per entrare nella scheda"
 }

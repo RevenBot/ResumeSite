@@ -113,8 +113,8 @@ frames = [
     mesh: (
       <mesh
         visible
-        position={[0, 0, 2]}
-        scale={0.9}
+        position={[0, 0, 0]}
+        scale={0.5}
         rotation={[0, Math.PI / 2, 0]}
       >
         <icosahedronGeometry args={[1, 1]} />

@@ -98,7 +98,7 @@ function Terminal() {
         showControlButtons={false}
         themes={{
           "my-custom-theme": {
-            themeBGColor: "var(--surface-border)",
+            themeBGColor: "var(--highlight-bg)",
             themePromptColor: "var(--green-700)",
             themeColor: "var(--highlight-text-color)",
           },

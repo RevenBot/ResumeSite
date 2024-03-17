@@ -4,11 +4,16 @@ import useStore from "../../context/mode/store";
 import CarouselContainer from "../Carousel/CarouselContainer";
 import framesComponents from "../Frames";
 import Caos from "./Caos";
+import { useTranslation } from "react-i18next";
 
 const Background = () => {
+  const { t } = useTranslation();
   const words = useMemo(
     () => [
-      { text: "Hello" },
+      { text: t("phrase-1") },
+      { text: t("phrase-2") },
+      { text: t("phrase-3") },
+      { text: t("phrase-4") },
       { text: "World" },
       { text: "Hello" },
       { text: "World" },
@@ -22,7 +27,7 @@ const Background = () => {
       { text: "Hello" },
       { text: "World" },
     ],
-    [],
+    [t],
   );
   const frames = useMemo(() => framesComponents, []);
   const mode = useStore((state) => state.caosMode);

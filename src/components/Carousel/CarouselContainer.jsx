@@ -18,7 +18,7 @@ function CarouselContainer({ frames }) {
         </ScrollControls>
       )}
       {match && <CarouselItems frames={frames} />}
-      <Environment preset="dawn" background blur={0.5} />
+      <Environment preset="night" background={true} blur={0.3} />
     </>
   );
 }

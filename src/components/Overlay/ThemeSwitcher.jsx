@@ -39,10 +39,10 @@ const ThemeSwitcher = () => {
           className="w-full md:w-14rem"
           pt={{
             root: {
-              style: { background: " var(--surface-border)" },
+              style: { background: " var(--highlight-bg)" },
             },
             panel: {
-              style: { background: " var(--surface-border)" },
+              style: { background: " var(--highlight-bg)" },
             },
           }}
         />

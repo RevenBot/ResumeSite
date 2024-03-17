@@ -5,7 +5,7 @@ import { DoubleSide, RepeatWrapping } from "three";
 
 function Banner(props) {
   const ref = useRef();
-  const texture = useTexture("/work_.png");
+  const texture = useTexture("/work-in-progress.jpg");
   texture.wrapS = texture.wrapT = RepeatWrapping;
   const scroll = useScroll();
   useFrame((state, delta) => {
