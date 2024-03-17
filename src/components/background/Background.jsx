@@ -28,7 +28,10 @@ const Background = () => {
   const mode = useStore((state) => state.caosMode);
 
   return (
-    <Canvas eventPrefix="client" camera={{ fov: 15, position: [0, 0, 100] }}>
+    <Canvas
+      eventPrefix="client"
+      camera={{ fov: 70, near: 1, far: 10000, position: [0, 0, 100] }}
+    >
       {mode && <Caos words={words} />}
       {!mode && <CarouselContainer frames={frames} />}
     </Canvas>

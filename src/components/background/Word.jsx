@@ -3,7 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Color } from "three";
 
-function Word({ children }) {
+function Word({ material, children }) {
   const color = new Color();
   const fontProps = {
     font: "/Inter_Medium_Regular.json?url",
@@ -74,9 +74,9 @@ function Word({ children }) {
       onPointerLeave={out}
       onClick={() => console.log("clicked")}
       {...fontProps}
+      material={material}
     >
       {children}
-      <meshStandardMaterial color="#020000" roughness={0.5} />
     </Text3D>
   );
 }

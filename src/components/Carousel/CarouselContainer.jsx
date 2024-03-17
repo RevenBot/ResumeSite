@@ -10,11 +10,11 @@ function CarouselContainer({ frames }) {
     <>
       <fog attach="fog" args={["#a79", 8.5, 12]} />
       {!match && (
-        <ScrollControls pages={1} infinite>
-          <Rig rotation={[0, 0, 0.15]}>
+        <ScrollControls pages={frames.length} infinite>
+          <Rig scale={3} rotation={[0, 0, 0.15]}>
             <CarouselItems frames={frames} />
           </Rig>
-          <Banner position={[0, -0.15, 0]} />
+          <Banner scale={3.3} position={[0, -0.15, 0]} />
         </ScrollControls>
       )}
       {match && <CarouselItems frames={frames} />}

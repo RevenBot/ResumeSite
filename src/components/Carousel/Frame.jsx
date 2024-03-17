@@ -101,6 +101,8 @@ export function RigIN({
         makeDefault
         minPolarAngle={0}
         maxPolarAngle={Math.PI / 2}
+        minDistance={2}
+        maxDistance={20}
       />
     );
 }

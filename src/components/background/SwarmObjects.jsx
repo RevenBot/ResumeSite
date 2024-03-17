@@ -2,7 +2,12 @@ import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 
-function SwarmObjects({ count, dummy = new THREE.Object3D() }) {
+function SwarmObjects({
+  count,
+  material,
+  geometry,
+  dummy = new THREE.Object3D(),
+}) {
   const mesh = useRef();
   const particles = useMemo(() => {
     const temp = [];
@@ -49,10 +54,12 @@ function SwarmObjects({ count, dummy = new THREE.Object3D() }) {
   });
   return (
     <>
-      <instancedMesh ref={mesh} args={[null, null, count]}>
-        <dodecahedronGeometry args={[1, 0]} />
-        <meshStandardMaterial color="#020000" roughness={0.5} />
-      </instancedMesh>
+      <instancedMesh
+        ref={mesh}
+        args={[null, null, count]}
+        material={material}
+        geometry={geometry}
+      ></instancedMesh>
     </>
   );
 }

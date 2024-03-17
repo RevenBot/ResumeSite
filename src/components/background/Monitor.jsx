@@ -57,7 +57,7 @@ function Monitor({
 
   return (
     <group ref={ref} {...props} dispose={null}>
-      <ScreenText frame="Object_230" panel="Object_231">
+      <ScreenText frame="Object_230" panel="Object_231" {...props}>
         {children}
       </ScreenText>
     </group>
@@ -97,13 +97,17 @@ function ScreenText({ invert, x = 1, y = 1.1, children, ...props }) {
   );
 }
 
-function Screen({ frame, panel, children, ...props }) {
+function Screen({ frame, panel, material, children, ...props }) {
   const { nodes } = useGLTF("/computers_1-transformed.glb?url");
   return (
     <group {...props}>
-      <mesh scale={1} castShadow receiveShadow geometry={nodes[frame].geometry}>
-        <meshStandardMaterial color="#020000" roughness={0.5} />
-      </mesh>
+      <mesh
+        scale={1}
+        castShadow
+        receiveShadow
+        geometry={nodes[frame].geometry}
+        material={material}
+      ></mesh>
       <mesh scale={1} geometry={nodes[panel].geometry}>
         <meshBasicMaterial toneMapped={false}>
           <RenderTexture width={512} height={512} attach="map" anisotropy={16}>

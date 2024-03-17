@@ -2,34 +2,31 @@ import { useFrame } from "@react-three/fiber";
 import SwarmMonitors from "./SwarmMonitors";
 import SwarmObjects from "./SwarmObjects";
 import SwarmWords from "./SwarmWords";
+import { useMemo } from "react";
+import { Color, DodecahedronGeometry, MeshStandardMaterial } from "three";
+import { Environment, OrbitControls } from "@react-three/drei";
+import envi from "../../assets/textures/omegacanis.hdr";
 
 function Caos({ words }) {
-  useFrame((state, delta) => {
-    state.camera.position.set(0, 0, 200);
-    state.camera.lookAt(0, 0, 0);
-    state.camera.fov = 100;
-  });
+  useFrame((state, delta) => {});
+
+  const material = useMemo(
+    () => new MeshStandardMaterial({ color: "#000000", roughness: 0.5 }),
+    [],
+  );
+  const objectsGeometry = useMemo(() => new DodecahedronGeometry(1), []);
+
   return (
     <>
-      <ambientLight intensity="0.01" />
-      <pointLight distance={200} intensity={10000} color="lightblue" />
-      <spotLight
-        intensity={20000}
-        position={[0, 0, 100]}
-        penumbra={1}
-        color="purple"
+      <SwarmObjects
+        count={1000}
+        material={material}
+        geometry={objectsGeometry}
       />
-      <mesh>
-        <planeGeometry args={[1000, 1000, 0]} />
-        <meshStandardMaterial
-          color="#00ff00"
-          roughness={0.5}
-          depthTest={false}
-        />
-      </mesh>
-      <SwarmObjects count={1000} />
-      <SwarmWords words={words} />
-      <SwarmMonitors words={words} />
+      <SwarmWords words={words} material={material} />
+      <SwarmMonitors words={words} material={material} />
+      <Environment near={1000} background={true} files={envi} />
+      <OrbitControls target={[0, 0, 0]} enableZoom={false} />
     </>
   );
 }

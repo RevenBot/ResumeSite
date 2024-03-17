@@ -1,6 +1,6 @@
 import { Frame, RigIN } from "./Frame";
 
-function CarouselItems({ frames, radius = 1.4 }) {
+function CarouselItems({ frames, radius = 1.6 }) {
   const count = frames.length;
   return (
     <>
