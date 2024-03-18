@@ -21,7 +21,7 @@ function Word({ material, children }) {
     return {
       t: Math.random() * 100,
       factor: 20 + Math.random() * 100,
-      speed: 0.001 + Math.random() / 200,
+      speed: 0.000001 + Math.random() / 200,
       xFactor: -50 + Math.random() * 100,
       yFactor: -50 + Math.random() * 100,
       zFactor: -50 + Math.random() * 100,
