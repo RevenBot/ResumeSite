@@ -11,11 +11,11 @@ function EnvironmentSite(){
   const gl = useThree((state) => state.gl)
   const texture = suspend(async (url) => {
   const loader = new HDRJPGLoader(gl)
-  const result = await loader.loadAsync('/omegacanis.jpg')
+  const result = await loader.loadAsync('/omegacanistest.jpg')
   result.renderTarget.texture.mapping = EquirectangularReflectionMapping
   // loader.dispose() call this if implemented
   return result.renderTarget.texture
-}, ['/omegacanis.jpg'])
+}, ['/omegacanistest.jpg'])
   return(
       <Environment map={texture} background  />
   )

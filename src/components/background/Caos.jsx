@@ -3,8 +3,7 @@ import SwarmObjects from "./SwarmObjects";
 import SwarmWords from "./SwarmWords";
 import { useMemo } from "react";
 import { DodecahedronGeometry, MeshStandardMaterial } from "three";
-import { Environment, OrbitControls } from "@react-three/drei";
-import envi from "../../assets/textures/omegacanistest.hdr";
+import { OrbitControls } from "@react-three/drei";
 import EnvironmentSite from "./EnvironmentSite";
 
 function Caos({ words }) {
@@ -26,7 +25,7 @@ function Caos({ words }) {
       <SwarmWords words={words} material={material} />
       <SwarmMonitors words={words} material={material} />
       <OrbitControls target={[0, 0, 0]} autoRotate enableZoom={false} />
-      <Environment background files={envi}/>
+      <EnvironmentSite />
     </>
   );
 }
