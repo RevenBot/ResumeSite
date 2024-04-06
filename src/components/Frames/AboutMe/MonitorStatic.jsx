@@ -5,7 +5,7 @@ import {
   useGLTF,
 } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
+import { useRef } from "react";
 
 function MonitorStatic({ children, ...props }) {
   const ref = useRef();
