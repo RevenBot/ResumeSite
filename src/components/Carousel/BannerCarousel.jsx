@@ -2,6 +2,7 @@ import { useScroll, useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import { DoubleSide, RepeatWrapping } from "three";
+import "../utils/util.js";
 
 function Banner(props) {
   const ref = useRef();

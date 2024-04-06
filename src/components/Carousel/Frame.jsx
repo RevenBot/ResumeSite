@@ -17,8 +17,8 @@ export function Frame({
   title,
   footer,
   bg,
-  width = 1,
-  height = 1.61803398875,
+  width = 1.2,
+  height = 2,
   children,
   ...props
 }) {
@@ -33,11 +33,11 @@ export function Frame({
   return (
     <group {...props}>
       <Text
-        fontSize={0.3}
+        fontSize={0.25}
         anchorY="top"
         anchorX="left"
         lineHeight={0.8}
-        position={[-0.375, 0.715, 0.01]}
+        position={[-0.575, 0.915, 0.02]}
         material-toneMapped={false}
       >
         {title}
@@ -45,7 +45,7 @@ export function Frame({
       <Text
         fontSize={0.1}
         anchorX="right"
-        position={[0.4, -0.659, 0.01]}
+        position={[0.55, -0.859, 0.01]}
         material-toneMapped={false}
       >
         /{id}
@@ -53,7 +53,7 @@ export function Frame({
       <Text
         fontSize={0.04}
         anchorX="right"
-        position={[0.0, -0.677, 0.01]}
+        position={[0.0, -0.94, 0.01]}
         material-toneMapped={false}
       >
         {footer}
@@ -72,8 +72,6 @@ export function Frame({
           events={params?.id === id}
           side={THREE.DoubleSide}
         >
-          <ambientLight intensity="1" />
-          <color attach="background" args={[bg]} />
           {children}
         </MeshPortalMaterial>
       </mesh>
@@ -82,7 +80,7 @@ export function Frame({
 }
 
 export function RigIN({
-  position = new THREE.Vector3(0, 0, 2),
+  position = new THREE.Vector3(0, 0, 3),
   focus = new THREE.Vector3(0, 0, 0),
 }) {
   const { controls, scene } = useThree();
@@ -90,7 +88,7 @@ export function RigIN({
   useEffect(() => {
     const active = scene.getObjectByName(params?.id);
     if (active) {
-      active.parent.localToWorld(position.set(0, 0, 10));
+      active.parent.localToWorld(position.set(0, 0, 1.2));
       active.parent.localToWorld(focus.set(0, 0, 0));
     }
     controls?.setLookAt(...position.toArray(), ...focus.toArray(), true);
@@ -101,8 +99,8 @@ export function RigIN({
         makeDefault
         minPolarAngle={0}
         maxPolarAngle={Math.PI / 2}
-        minDistance={2}
-        maxDistance={20}
+        minDistance={0.7}
+        maxDistance={2}
       />
     );
 }

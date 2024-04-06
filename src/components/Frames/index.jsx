@@ -1,19 +1,11 @@
-frames = [
+import AboutMe from "./AboutMe/AboutMe";
+
+const frames = [
   {
-    id: "01",
-    title: "Alpha 1",
+    id: "about-me",
+    title: "About me",
     footer: "1",
-    mesh: (
-      <mesh
-        visible
-        position={[0, 0, 0]}
-        scale={0.4}
-        rotation={[Math.PI / 2, 0, 0]}
-      >
-        <sphereGeometry args={[1, 16, 16]} />
-        <meshStandardMaterial color="hotpink" transparent />
-      </mesh>
-    ),
+    mesh: <AboutMe />,
   },
   {
     id: "02",
@@ -23,7 +15,7 @@ frames = [
       <mesh
         visible
         position={[0, 0, 0]}
-        scale={0.4}
+        scale={4}
         rotation={[Math.PI / 2, 0, 0]}
       >
         <sphereGeometry args={[1, 16, 16]} />
@@ -39,7 +31,7 @@ frames = [
       <mesh
         visible
         position={[0, 0, 0]}
-        scale={0.4}
+        scale={10}
         rotation={[Math.PI / 2, 0, 0]}
       >
         <sphereGeometry args={[1, 16, 16]} />
@@ -52,7 +44,7 @@ frames = [
     title: "Delta 2",
     footer: "4",
     mesh: (
-      <mesh visible position={[0, 0, 0]} scale={0.5}>
+      <mesh visible position={[0, 0, 0]} scale={10}>
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color="skyblue" />
       </mesh>
@@ -114,7 +106,7 @@ frames = [
       <mesh
         visible
         position={[0, 0, 0]}
-        scale={0.5}
+        scale={4}
         rotation={[0, Math.PI / 2, 0]}
       >
         <icosahedronGeometry args={[1, 1]} />
