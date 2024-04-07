@@ -41,7 +41,6 @@ const AboutMe = () => {
       <MonitorStatic position={[0.9, -0.2, -0.37]} scale={0.4} invert={true}>
         {`:wq`}
       </MonitorStatic>
-      <ambientLight />
       <Environment files={file} background />
     </group>
   );
