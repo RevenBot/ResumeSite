@@ -9,12 +9,16 @@ import "./Terminal.css";
 import Help from "./HelpCommand";
 import ModeHelp from "./ModeHelp";
 import InitCommand from "./InitCommand";
+import GoToHelp from "./GoToHelp";
+import { useLocation } from "wouter";
 
 function Terminal() {
   const { setBufferedContent, setTemporaryContent } =
     React.useContext(TerminalContext);
 
   const { updateMode, switchMode } = useStore((state) => state);
+
+  const [location, setLocation] = useLocation();
 
   const commands = {
     help: () => <Help />,
@@ -31,6 +35,24 @@ function Terminal() {
       } else {
         switchMode();
         return <>Switch mode</>;
+      }
+    },
+    goto: (frame) => {
+      if (frame === "help") {
+        return <GoToHelp />;
+      }
+      if (frame === "about-me") {
+        setLocation("/frame/about-me/");
+        return <>goto about-me</>;
+      } else if (frame === "skills") {
+        setLocation("/frame/skills/");
+        return <>goto skills</>;
+      } else if (frame === "contacts") {
+        setLocation("/frame/contacts/");
+        return <>goto contacts</>;
+      } else if (frame === "index") {
+        setLocation("/");
+        return <>goto index</>;
       }
     },
 
