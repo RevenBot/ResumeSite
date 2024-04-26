@@ -8,14 +8,20 @@ function Footer() {
   const [, setLocation] = useLocation();
   const mode = useStore((state) => state.caosMode);
   return (
-    <div className="absolute bottom-0 z-2 w-full flex flex-column bg-black-alpha-10">
+    <div
+      className="absolute bottom-0 z-2 w-full flex flex-column"
+      style={{
+        background: "var(--highlight-bg)",
+        color: "var(--highlight-text-color)",
+      }}
+    >
       {!mode && (
-        <div className=" w-full flex flex-row md:flex-row justify-content-between p-3 xl:text-lg lg:text-lg text-sm text-primary">
+        <div className=" w-full flex flex-row md:flex-row justify-content-between p-2 xl:text-lg lg:text-lg text-sm">
           <a
             style={{
               fontSize: "13px",
               textDecoration: "none",
-              color: "var(--primary-color)",
+              color: "var(--highlight-text-color)",
             }}
             href="#"
             onClick={() => setLocation("/")}
@@ -24,17 +30,15 @@ function Footer() {
           </a>
         </div>
       )}
-      <div className=" w-full flex flex-row md:flex-row justify-content-between p-3 xl:text-lg lg:text-lg text-sm text-primary">
+      <div className=" w-full flex flex-row md:flex-row justify-content-between p-3 xl:text-lg lg:text-lg text-sm">
         <a
           href="https://github.com/RevenBot/resumEsite"
           style={{
             textDecoration: "none",
-            color: "var(--primary-color)",
+            color: "var(--highlight-text-color)",
           }}
         >
-          Repo
-          <br />
-          RevenBot
+          Repo RevenBot
         </a>
         <div>{t("work")}</div>
         <div>06/03/2024</div>
