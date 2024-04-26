@@ -1,4 +1,5 @@
 import AboutMe from "./AboutMe/AboutMe";
+import Contact from "./Contacts/Contact";
 import Skills from "./Skills/Skills";
 
 const frames = [
@@ -15,20 +16,10 @@ const frames = [
     mesh: <Skills />,
   },
   {
-    id: "03",
-    title: "Delta 1",
+    id: "contacts",
+    title: "Contacts",
     footer: "3",
-    mesh: (
-      <mesh
-        visible
-        position={[0, 0, 0]}
-        scale={10}
-        rotation={[Math.PI / 2, 0, 0]}
-      >
-        <sphereGeometry args={[1, 16, 16]} />
-        <meshStandardMaterial color="hotpink" transparent />
-      </mesh>
-    ),
+    mesh: <Contact />,
   },
   {
     id: "04",

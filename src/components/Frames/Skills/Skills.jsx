@@ -26,7 +26,7 @@ const Skills = () => {
       postgresql,
     ],
   ] = useState(() => [...Array(15)].map(createRef));
-  const [match] = useRoute("/frame/:id");
+  const [match] = useRoute("/frame/skills");
   useFrame((state) => {
     if (match) state.scene.backgroundRotation.y = 1.4;
     else state.scene.backgroundRotation.y = -0.2;

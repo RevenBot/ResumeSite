@@ -16,22 +16,22 @@ export function Frame({
   id,
   title,
   footer,
-  bg,
   width = 1.2,
   height = 2,
   children,
-  ...props
+  rotation,
+  position,
 }) {
   const portal = useRef();
   const [, setLocation] = useLocation();
   const [, params] = useRoute("/frame/:id");
   const [hovered, hover] = useState(false);
   useCursor(hovered);
-  useFrame((state, dt) => {
+  useFrame((_, dt) => {
     easing.damp(portal.current, "blend", params?.id === id ? 1 : 0, 0.2, dt);
   });
   return (
-    <group {...props}>
+    <group rotation={params ? [0, 0, 0] : rotation} position={position}>
       <Text
         fontSize={0.25}
         anchorY="top"
@@ -53,7 +53,7 @@ export function Frame({
       <Text
         fontSize={0.04}
         anchorX="right"
-        position={[0.0, -0.94, 0.01]}
+        position={[0.0, -0.95, 0.01]}
         material-toneMapped={false}
       >
         {footer}
@@ -63,7 +63,7 @@ export function Frame({
         onDoubleClick={(e) => (
           e.stopPropagation(), setLocation("/frame/" + e.object.name)
         )}
-        onPointerOver={(e) => hover(true)}
+        onPointerOver={() => hover(true)}
         onPointerOut={() => hover(false)}
       >
         <roundedPlaneGeometry args={[width, height, 0.1]} />

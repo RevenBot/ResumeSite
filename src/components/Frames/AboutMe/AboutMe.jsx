@@ -11,6 +11,7 @@ const AboutMe = () => {
     () =>
       new MeshStandardMaterial({
         roughness: 0,
+        color: "#8a8a8a",
       }),
     [],
   );
@@ -35,7 +36,6 @@ const AboutMe = () => {
         position={[-0.85, 0.2, -0.5]}
         scale={0.1}
       >
-        <meshStandardMaterial color="#8a8a8a" />
         {t("phrase")}
       </Text3D>
       <MonitorStatic position={[0.9, -0.2, -0.37]} scale={0.4} invert={true}>
