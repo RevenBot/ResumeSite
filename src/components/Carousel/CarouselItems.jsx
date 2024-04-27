@@ -7,9 +7,7 @@ function CarouselItems({ frames, radius = 1.6 }) {
       {frames.map((item, i) => (
         <Frame
           key={item.id}
-          id={item.id}
-          title={item.title}
-          footer={item.footer}
+          item={item}
           bg="#e4cdac"
           position={[
             Math.sin(((i + 1) / count) * Math.PI * 2) * radius,

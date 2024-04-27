@@ -9,13 +9,12 @@ import {
 } from "@react-three/drei";
 import { useRoute, useLocation } from "wouter";
 import { easing, geometry } from "maath";
+import useStore from "../../context/banner/store";
 
 extend(geometry);
 
 export function Frame({
-  id,
-  title,
-  footer,
+  item,
   bg,
   width = 1.2,
   height = 2,
@@ -23,13 +22,28 @@ export function Frame({
   ...props
 }) {
   const portal = useRef();
+  const { updateStatus } = useStore((state) => state);
+
+  const { id, title, footer, description } = item;
+
   const [, setLocation] = useLocation();
   const [, params] = useRoute("/frame/:id");
   const [hovered, hover] = useState(false);
   useCursor(hovered);
-  useFrame((state, dt) => {
+  useFrame((stte, dt) => {
     easing.damp(portal.current, "blend", params?.id === id ? 1 : 0, 0.2, dt);
   });
+
+  const OnPointerOver = (e) => {
+    e.stopPropagation();
+    hover(true);
+    updateStatus(description);
+  };
+  const OnPointerOut = (e) => {
+    e.stopPropagation();
+    hover(false);
+  };
+
   return (
     <group {...props}>
       <Text
@@ -63,8 +77,8 @@ export function Frame({
         onDoubleClick={(e) => (
           e.stopPropagation(), setLocation("/frame/" + e.object.name)
         )}
-        onPointerOver={(e) => hover(true)}
-        onPointerOut={() => hover(false)}
+        onPointerOver={(e) => OnPointerOver(e)}
+        onPointerOut={(e) => OnPointerOut(e)}
       >
         <roundedPlaneGeometry args={[width, height, 0.1]} />
         <MeshPortalMaterial
@@ -72,6 +86,8 @@ export function Frame({
           events={params?.id === id}
           side={THREE.DoubleSide}
         >
+          <ambientLight intensity="1" />
+          <color attach="background" args={[bg]} />
           {children}
         </MeshPortalMaterial>
       </mesh>

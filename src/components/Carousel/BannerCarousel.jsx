@@ -1,28 +1,51 @@
-import { useScroll, useTexture } from "@react-three/drei";
+import {
+  PerspectiveCamera,
+  RenderTexture,
+  Text,
+  useScroll,
+} from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import { DoubleSide, RepeatWrapping } from "three";
 import "../utils/util.js";
+import useStore from "../../context/banner/store.js";
+import { useTranslation } from "react-i18next";
 
 function Banner(props) {
   const ref = useRef();
-  const texture = useTexture("/work-in-progress.jpg");
-  texture.wrapS = texture.wrapT = RepeatWrapping;
   const scroll = useScroll();
+  const { t } = useTranslation("carousel");
+  const { bannerMessage } = useStore((state) => state);
+
   useFrame((state, delta) => {
     ref.current.material.time.value += Math.abs(scroll.delta) * 4;
-    ref.current.material.map.offset.x += delta / 2;
+    ref.current.material.map.offset.x += delta / 4;
   });
+
   return (
     <mesh ref={ref} {...props}>
       <cylinderGeometry args={[1.6, 1.6, 0.14, 128, 16, true]} />
-      <meshSineMaterial
-        map={texture}
-        map-anisotropy={16}
-        map-repeat={[30, 1]}
-        side={DoubleSide}
-        toneMapped={false}
-      />
+      <meshSineMaterial toneMapped={false} side={DoubleSide}>
+        <RenderTexture
+          attach="map"
+          repeat={[15, 1]}
+          anisotropy={16}
+          wrapS={RepeatWrapping}
+          wrapT={RepeatWrapping}
+        >
+          <PerspectiveCamera
+            makeDefault
+            manual
+            aspect={18}
+            position={[0, 0, 5]}
+          />
+          <color attach="background" args={["#c9af89"]} />
+          <ambientLight intensity={1} />
+          <Text fontSize={3} color="#555">
+            {t(bannerMessage)}
+          </Text>
+        </RenderTexture>
+      </meshSineMaterial>
     </mesh>
   );
 }
