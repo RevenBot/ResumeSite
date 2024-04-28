@@ -1,5 +1,8 @@
 import AboutMe from "./AboutMe/AboutMe";
 import Contact from "./Contacts/Contact";
+import Memories from "./Projects/Memories";
+import Resume from "./Projects/Resume";
+import WordleSolver from "./Projects/WordleSolver";
 import Skills from "./Skills/Skills";
 
 const frames = [
@@ -25,61 +28,36 @@ const frames = [
     mesh: <Contact />,
   },
   {
-    id: "04",
-    title: "Delta 2",
+    id: "project-memories",
+    title: "Memories",
     footer: "4",
-    description: "phrase-2",
-    mesh: (
-      <mesh visible position={[0, 0, 0]} scale={0.2}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color="skyblue" />
-      </mesh>
-    ),
+    description: "default",
+    mesh: <Memories />,
   },
   {
-    id: "05",
-    title: "Delta 3",
+    id: "project-wordle",
+    title: "Wordle Solver",
     footer: "5",
+    description: "default",
+    mesh: <WordleSolver />,
+  },
+  {
+    id: "resume",
+    title: "Resume",
+    footer: "6",
+    description: "default",
+    mesh: <Resume />,
+  },
+  {
+    id: "07",
+    title: "",
+    footer: "7",
     description: "default",
     mesh: (
       <mesh
         visible
         position={[0, 0, 0]}
         scale={0.6}
-        rotation={[0, Math.PI / 4, 0]}
-      >
-        <torusGeometry args={[0.5, 0.2, 16, 32]} />
-        <meshStandardMaterial color="purple" />
-      </mesh>
-    ),
-  },
-  {
-    id: "06",
-    title: "Delta 4",
-    footer: "6",
-    description: "6666666?",
-    mesh: (
-      <mesh
-        visible
-        position={[0, 0, 0]}
-        scale={0.7}
-        rotation={[Math.PI / 6, 0, Math.PI / 6]}
-      >
-        <coneGeometry args={[0.5, 1, 16]} />
-        <meshStandardMaterial color="orange" />
-      </mesh>
-    ),
-  },
-  {
-    id: "07",
-    title: "Delta 5",
-    footer: "7",
-    description: "7777777777?",
-    mesh: (
-      <mesh
-        visible
-        position={[0, 0, 0]}
-        scale={0.8}
         rotation={[0, Math.PI / 6, Math.PI / 3]}
       >
         <dodecahedronGeometry args={[1, 0]} />
@@ -89,14 +67,14 @@ const frames = [
   },
   {
     id: "08",
-    title: "Delta 6",
+    title: "",
     footer: "8",
-    description: "88888888?",
+    description: "default",
     mesh: (
       <mesh
         visible
         position={[0, 0, 0]}
-        scale={4}
+        scale={0.5}
         rotation={[0, Math.PI / 2, 0]}
       >
         <icosahedronGeometry args={[1, 1]} />

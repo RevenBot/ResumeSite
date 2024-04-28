@@ -3,7 +3,7 @@ import SwarmObjects from "./SwarmObjects";
 import SwarmWords from "./SwarmWords";
 import { useEffect, useMemo, useState } from "react";
 import { DodecahedronGeometry, MeshStandardMaterial } from "three";
-import { OrbitControls } from "@react-three/drei";
+import { Billboard, OrbitControls } from "@react-three/drei";
 import EnvironmentSite from "./EnvironmentSite";
 import useStore from "../../context/cameraCaos/store";
 
@@ -43,7 +43,7 @@ function Caos({ words }) {
     // it is called every time the window is resized
   }, [isMobile]);
   return (
-    <group>
+    <Billboard>
       <SwarmObjects
         count={isMobile ? 300 : 1000}
         material={material}
@@ -61,7 +61,7 @@ function Caos({ words }) {
       />
       <ambientLight color={"#ffffff"} intensity="1" />
       <EnvironmentSite isMobile={isMobile} />
-    </group>
+    </Billboard>
   );
 }
 

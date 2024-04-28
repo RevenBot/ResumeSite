@@ -53,11 +53,6 @@ function Word({ children }) {
   }, []);
 
   // Change the mouse cursor on hover¨
-  useEffect(() => {
-    if (hovered) document.body.style.cursor = "pointer";
-    return () => (document.body.style.cursor = "auto");
-  }, [hovered]);
-
   // Tie component to the render-loop
   useFrame((state) => {
     ref.current.material.color.lerp(

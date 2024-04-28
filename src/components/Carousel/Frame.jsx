@@ -29,7 +29,7 @@ export function Frame({
   const [, setLocation] = useLocation();
   const [, params] = useRoute("/frame/:id");
   const [hovered, hover] = useState(false);
-  useCursor(hovered);
+  useCursor(hovered,"pointer","url('https://raw.githubusercontent.com/chenglou/react-motion/master/demos/demo8-draggable-list/cursor.png') 39 39, auto");
   useFrame((stte, dt) => {
     easing.damp(portal.current, "blend", params?.id === id ? 1 : 0, 0.2, dt);
   });
