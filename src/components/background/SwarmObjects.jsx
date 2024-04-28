@@ -22,6 +22,7 @@ function SwarmObjects({
     }
     return temp;
   }, [count]);
+
   useFrame((state) => {
     particles.forEach((particle, i) => {
       let { t, factor, speed, xFactor, yFactor, zFactor } = particle;
@@ -52,6 +53,7 @@ function SwarmObjects({
     });
     mesh.current.instanceMatrix.needsUpdate = true;
   });
+
   return (
     <>
       <instancedMesh

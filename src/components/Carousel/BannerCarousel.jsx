@@ -25,7 +25,12 @@ function Banner(props) {
   return (
     <mesh ref={ref} {...props}>
       <cylinderGeometry args={[1.6, 1.6, 0.14, 128, 16, true]} />
-      <meshSineMaterial toneMapped={false} side={DoubleSide}>
+      <meshSineMaterial
+        toneMapped={false}
+        side={DoubleSide}
+        transparent={true}
+        opacity={0.8}
+      >
         <RenderTexture
           attach="map"
           repeat={[15, 1]}
@@ -41,7 +46,7 @@ function Banner(props) {
           />
           <color attach="background" args={["#c9af89"]} />
           <ambientLight intensity={1} />
-          <Text fontSize={3} color="#555">
+          <Text fontSize={3} color="#000000">
             {t(bannerMessage)}
           </Text>
         </RenderTexture>

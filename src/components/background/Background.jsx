@@ -23,7 +23,6 @@ const Background = () => {
   const resetStatus = useStoreM((state) => state.resetStatus);
 
   const reset = () => {
-    console.log("ok");
     resetStatus();
   };
 

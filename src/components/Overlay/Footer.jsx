@@ -40,7 +40,10 @@ function Footer() {
         >
           Repo RevenBot
         </a>
-        <div>{t("work")}</div>
+        <div>
+          {mode && t("chaos")}
+          {!mode && t("order")}
+        </div>
         <div>06/03/2024</div>
       </div>
     </div>

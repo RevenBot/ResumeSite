@@ -7,7 +7,7 @@ import CarouselItems from "./CarouselItems";
 function CarouselContainer({ frames }) {
   const [match, params] = useRoute("/frame/:id");
   return (
-    <>
+    <group>
       <fog attach="fog" args={["#a79", 8.5, 12]} />
       {!match && (
         <ScrollControls pages={frames.length} infinite>
@@ -19,7 +19,7 @@ function CarouselContainer({ frames }) {
       )}
       {match && <CarouselItems frames={frames} />}
       <Environment preset="night" background={true} blur={0.3} />
-    </>
+    </group>
   );
 }
 

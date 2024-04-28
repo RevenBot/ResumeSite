@@ -5,15 +5,20 @@ import { useEffect, useMemo, useState } from "react";
 import { DodecahedronGeometry, MeshStandardMaterial } from "three";
 import { OrbitControls } from "@react-three/drei";
 import EnvironmentSite from "./EnvironmentSite";
+import useStore from "../../context/cameraCaos/store";
 
 function Caos({ words }) {
+  const autoRotate = useStore((state) => state.autoRotate);
+
   const [isMobile, setIsMobile] = useState(
     typeof window !== "undefined" && window.innerWidth < 1024,
   );
   const material = useMemo(
     () =>
       new MeshStandardMaterial({
-        roughness: 0,
+        color: "#cc7000",
+        roughness: 0.5,
+        metalness: 0.5,
       }),
     [],
   );
@@ -38,23 +43,25 @@ function Caos({ words }) {
     // it is called every time the window is resized
   }, [isMobile]);
   return (
-    <>
+    <group>
       <SwarmObjects
         count={isMobile ? 300 : 1000}
         material={material}
         geometry={objectsGeometry}
       />
-      <SwarmWords
-        words={isMobile ? words : words.concat(words)}
-        material={material}
-      />
+      <SwarmWords words={isMobile ? words : words.concat(words)} />
       <SwarmMonitors
         words={isMobile ? words : words.concat(words)}
         material={material}
       />
-      <OrbitControls target={[0, 0, 0]} autoRotate enableZoom={false} />
+      <OrbitControls
+        target={[0, 0, 0]}
+        autoRotate={autoRotate}
+        enableZoom={false}
+      />
+      <ambientLight color={"#ffffff"} intensity="1" />
       <EnvironmentSite isMobile={isMobile} />
-    </>
+    </group>
   );
 }
 

@@ -86,7 +86,7 @@ export function Frame({
           events={params?.id === id}
           side={THREE.DoubleSide}
         >
-          <ambientLight intensity="1" />
+          <ambientLight color={bg} intensity="1" />
           <color attach="background" args={[bg]} />
           {children}
         </MeshPortalMaterial>

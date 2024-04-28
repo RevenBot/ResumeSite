@@ -5,13 +5,8 @@ import Word from "./Word";
 extend({ TextGeometry });
 
 function SwarmWords(props) {
-  const { words, material } = props;
-  console.log(words);
-  return words.map((item, i) => (
-    <Word key={i} material={material}>
-      {item.text}
-    </Word>
-  ));
+  const { words } = props;
+  return words.map((item, i) => <Word key={i}>{item.text}</Word>);
 }
 
 export default SwarmWords;

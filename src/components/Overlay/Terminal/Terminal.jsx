@@ -18,7 +18,7 @@ function Terminal() {
 
   const { updateMode, switchMode } = useStore((state) => state);
 
-  const [location, setLocation] = useLocation();
+  const [, setLocation] = useLocation();
 
   const commands = {
     help: () => <Help />,
@@ -129,11 +129,10 @@ function Terminal() {
         welcomeMessage={welcomeMessage}
         commands={commands}
         prompt={"➜"}
-        defaultHandler={(command, commandArguments) => {
+        defaultHandler={(command) => {
           return (
             <div style={{ lineBreak: "anywhere" }}>
-              {command} passed on to default handler with arguments
-              {commandArguments}
+              {command}: command not found
             </div>
           );
         }}

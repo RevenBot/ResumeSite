@@ -1,5 +1,7 @@
 {
   "work" : "Lavori in corso",
   "back" : "indietro",
-  "dbclick": "doppio click per entrare nella scheda"
+  "dbclick": "doppio click per entrare nella scheda",
+  "chaos" : "Un ambiente disorganizzato è un caos in attesa di accadere.",
+  "order": "Un ambiente organizzato è l’armonia pronta a fiorire."
 }
