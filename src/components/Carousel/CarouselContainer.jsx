@@ -5,7 +5,7 @@ import Banner from "./BannerCarousel";
 import CarouselItems from "./CarouselItems";
 
 function CarouselContainer({ frames }) {
-  const [match, params] = useRoute("/frame/:id");
+  const [match,] = useRoute("/frame/:id");
   return (
     <group>
       <fog attach="fog" args={["#a79", 8.5, 12]} />

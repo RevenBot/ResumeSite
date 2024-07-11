@@ -1,12 +1,12 @@
 import { createRef, useState } from "react";
-import { Node } from "./Node";
 import { Nodes } from "./Nodes";
 import { Environment } from "@react-three/drei";
 import file from "../../../assets/textures/nebula.hdr";
 import { useFrame } from "@react-three/fiber";
 import { useRoute } from "wouter";
+import Node from "./Node";
 
-const Skills = () => {
+function Skills() {
   const [
     [
       frontend,
@@ -160,6 +160,6 @@ const Skills = () => {
       <Environment files={file} background />
     </group>
   );
-};
+}
 
 export default Skills;

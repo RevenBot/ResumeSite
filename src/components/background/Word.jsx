@@ -1,6 +1,6 @@
 import { Text3D } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Color, MeshStandardMaterial } from "three";
 import useStore from "../../context/cameraCaos/store";
 

@@ -3,7 +3,7 @@ import Footer from "./Footer";
 import Terminal from "./Terminal/Terminal";
 import ThemeSwitcher from "./ThemeSwitcher";
 
-function Overlay(props) {
+function Overlay() {
   return (
     <>
       <ThemeSwitcher />

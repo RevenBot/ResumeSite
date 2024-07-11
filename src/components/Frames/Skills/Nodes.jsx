@@ -8,6 +8,7 @@ import { useRef } from "react";
 import { DoubleSide } from "three";
 
 export const context = createContext();
+
 export const Circle = forwardRef(
   (
     {
@@ -34,6 +35,8 @@ export const Circle = forwardRef(
     );
   },
 );
+
+Circle.displayName = "Circle";
 
 export function Nodes({ children }) {
   const group = useRef();

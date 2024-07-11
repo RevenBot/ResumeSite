@@ -7,12 +7,7 @@ import {
 import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 
-function Monitor({
-  position = [0, 0, 0],
-  rotation = [0, 0, 0],
-  children,
-  ...props
-}) {
+function Monitor({ children, ...props }) {
   const ref = useRef();
 
   const particle = useMemo(() => {

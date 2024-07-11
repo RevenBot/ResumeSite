@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import { Spherical, Vector3 } from "three";
 import Word from "./Word";
 import * as THREE from "three";
 

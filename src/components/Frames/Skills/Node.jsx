@@ -7,9 +7,9 @@ import {
 } from "react";
 import { Circle, context } from "./Nodes";
 import { Vector3 } from "three";
-import { Svg, Text, Text3D } from "@react-three/drei";
+import { Svg, Text3D } from "@react-three/drei";
 
-export const Node = forwardRef(
+const Node = forwardRef(
   (
     {
       color = "black",
@@ -73,3 +73,7 @@ export const Node = forwardRef(
     );
   },
 );
+
+Node.displayName = "Node";
+
+export default Node;
