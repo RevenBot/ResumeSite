@@ -1,7 +1,7 @@
 import { Route, Switch } from "wouter";
 import Overlay from "./components/Overlay/Overlay";
 import Background from "./components/background/Background";
-import { Test } from "./components/Test/Test";
+import Test from "./components/Test/Test";
 
 export const App = () => (
   <>

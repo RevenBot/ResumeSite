@@ -11,7 +11,7 @@ const frames = [
     title: "About me",
     footer: "1",
     description: "about-me",
-    mesh: <AboutMe />,
+    mesh: <AboutMe id={"about-me"} />,
   },
   {
     id: "skills",
@@ -32,7 +32,7 @@ const frames = [
     title: "Memories",
     footer: "4",
     description: "default",
-    mesh: <Memories />,
+    mesh: <Memories id={"project-memories"} />,
   },
   {
     id: "project-wordle",

@@ -1,4 +1,4 @@
-import { Frame, RigIN } from "./Frame";
+import { Frame } from "./Frame";
 
 function CarouselItems({ frames, radius = 1.6 }) {
   const count = frames.length;
@@ -19,7 +19,6 @@ function CarouselItems({ frames, radius = 1.6 }) {
           {item.mesh}
         </Frame>
       ))}
-      <RigIN rotation={[0, 0, 0.15]} />
     </>
   );
 }

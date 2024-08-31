@@ -1,48 +1,65 @@
-import ActiveCard from "./Card";
+import { useRoute } from "wouter";
+import Figures from "./../../ShowRoom/Figures";
+import { Physics, RigidBody } from "@react-three/rapier";
+import { Environment, MeshReflectorMaterial } from "@react-three/drei";
+import Player from "../../ShowRoom/Player";
+import { useThree } from "@react-three/fiber";
+import { useEffect } from "react";
 
-const Memories = () => {
+const Memories = ({ id }) => {
+  const [match, params] = useRoute("frame/:id");
+
+  const images = [
+    // Front
+    {
+      position: [0, 0, 1.5],
+      rotation: [0, 0, 0],
+      url: "/img/projects/memories/home.png",
+    },
+    // Back
+    {
+      position: [-0.8, 0, -0.6],
+      rotation: [0, 0, 0],
+      url: "/img/projects/memories/index.png",
+    },
+  ];
+  const { gl } = useThree();
+
+  useEffect(() => {
+    if (params?.id == id) {
+      gl.domElement.requestPointerLock();
+    }
+    return () => {
+      document.exitPointerLock();
+    };
+  }, [params?.id]);
+
   return (
-    <group scale={0.2}>
-      <ActiveCard
-        position={[-5, 1, -5]}
-        rotation={[0, Math.PI / 4, 0]}
-        url={"/img/projects/memories/index.png?url"}
-        textContainer={{
-          position: [-5, 1, 0.1],
-          anchorX: "right",
-          text: "HomePage",
-        }}
-      />
-      <ActiveCard
-        url={"/img/projects/memories/home.png?url"}
-        position={[5, 1, -5]}
-        rotation={[0, (7 * Math.PI) / 4, 0]}
-        textContainer={{
-          position: [-5, 1, 0.1],
-          anchorX: "right",
-          text: "MainPage",
-        }}
-      />
-      <ActiveCard
-        url={"/img/projects/memories/sign-in.png?url"}
-        position={[-5, 1, 7]}
-        rotation={[0, (3 * Math.PI) / 4, 0]}
-        textContainer={{
-          position: [-5, 1, 0.1],
-          anchorX: "right",
-          text: "Authentication",
-        }}
-      />
-      <ActiveCard
-        url={"/img/projects/memories/profile.png?url"}
-        position={[5, 1, 7]}
-        rotation={[0, (5 * Math.PI) / 4, 0]}
-        textContainer={{
-          position: [-5, 1, 0.1],
-          anchorX: "right",
-          text: "Profile",
-        }}
-      />
+    <group position={[-10, -20, -30]}>
+      <color attach="background" args={["#191920"]} />
+      <fog attach="fog" args={["#191920", 0, 15]} />
+      <Physics timeStep="vary">
+        <RigidBody type="fixed" colliders="trimesh">
+          <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+            <planeGeometry args={[100, 100]} />
+            <MeshReflectorMaterial
+              blur={[300, 100]}
+              resolution={2048}
+              mixBlur={1}
+              mixStrength={80}
+              roughness={1}
+              depthScale={1.2}
+              minDepthThreshold={0.4}
+              maxDepthThreshold={1.4}
+              color="#050505"
+              metalness={0.5}
+            />
+          </mesh>
+        </RigidBody>
+        <Figures images={images} />
+        {params?.id == id && <Player />}
+      </Physics>
+      <Environment preset="city" />
     </group>
   );
 };

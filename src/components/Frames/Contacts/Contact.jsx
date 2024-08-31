@@ -27,14 +27,14 @@ function Contact() {
       {
         text: "Linkedin",
         link: "https://www.linkedin.com/in/kevin-de-jesus-sinchi-soto",
-        position: [-1, 0.5, -1],
+        position: [-2, 2.5, -1],
       },
       {
         text: "Github",
         link: "https://github.com/RevenBot",
-        position: [0.1, -0.3, -1],
+        position: [0.5, 0, -1],
       },
-      { text: "revenbot@proton.me", link: "", position: [-1.7, -1, -1] },
+      { text: "revenbot@proton.me", link: "", position: [-1.7, -2.5, -1] },
     ],
     [],
   );
@@ -51,7 +51,6 @@ function Contact() {
           ref={ref}
           position={item.position}
           onClick={() => OnClick(item.link)}
-          scale={0.3}
           {...fontProps}
           material={material}
         >

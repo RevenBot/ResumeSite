@@ -30,11 +30,7 @@ const Background = () => {
   return (
     <>
       <TimeoutMessage />
-      <Canvas
-        eventPrefix="client"
-        camera={{ fov: 70, near: 1, far: 10000, position: [0, 0, 100] }}
-        onPointerLeave={() => reset()}
-      >
+      <Canvas eventPrefix="client" onPointerLeave={() => reset()}>
         {mode && <Caos words={words} />}
         {!mode && <CarouselContainer frames={frames} />}
       </Canvas>

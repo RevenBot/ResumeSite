@@ -39,48 +39,48 @@ function Skills() {
           ref={frontend}
           name="frontend"
           color="#204090"
-          position={[-0.9, 1, -0.9]}
-          scale={0.2}
+          position={[-2, 3, -0.9]}
+          scale={1}
           connectedTo={[backend]}
         />
         <Node
           ref={html}
           name="    html"
           color="#fcba03"
-          position={[-1.4, 0, -0.9]}
-          scale={0.2}
+          position={[-4.5, 0, -0.9]}
+          scale={1}
           connectedTo={[frontend, react, blazor]}
         />
         <Node
           ref={css}
           name="    css"
           color="#001aff"
-          position={[-1.4, -0.3, -0.9]}
-          scale={0.2}
+          position={[-4.5, -1.3, -0.9]}
+          scale={1}
           connectedTo={[frontend, react, blazor]}
         />
         <Node
           ref={javascript}
           name="javascript"
           color="#204090"
-          position={[-1.4, -0.6, -0.9]}
-          scale={0.2}
+          position={[-4.5, -2.6, -0.9]}
+          scale={1}
           connectedTo={[frontend, react, blazor]}
         />
         <Node
           ref={react}
           name="   react"
           color="#00bbff"
-          position={[-0.9, -0, -0.9]}
-          scale={0.2}
+          position={[-2.5, -0, -0.9]}
+          scale={1}
           connectedTo={[frontend, graphql]}
         />
         <Node
           ref={blazor}
           name="blazor"
           color="#000dff"
-          position={[-0.9, -0.3, -0.9]}
-          scale={0.2}
+          position={[-2.5, -1.3, -0.9]}
+          scale={1}
           connectedTo={[frontend, restApi]}
         />
 
@@ -88,40 +88,40 @@ function Skills() {
           ref={backend}
           name="backend"
           color="#ff0000"
-          position={[0.9, 1, -0.9]}
-          scale={0.2}
+          position={[2, 3, -0.9]}
+          scale={1}
           connectedTo={[csharp, python, dotnet]}
         />
         <Node
           ref={csharp}
           name="      c#"
           color="#00ff1a"
-          position={[1.4, 0, -0.9]}
-          scale={0.2}
+          position={[4.5, 0, -0.9]}
+          scale={1}
           connectedTo={[]}
         />
         <Node
           ref={python}
           name="python"
           color="#eeff00"
-          position={[1.4, -0.3, -0.9]}
-          scale={0.2}
+          position={[4.6, -1.3, -0.9]}
+          scale={1}
           connectedTo={[]}
         />
         <Node
           ref={dotnet}
           name="dotnet"
           color="#204090"
-          position={[0.9, 0, -0.9]}
-          scale={0.2}
+          position={[2.5, 0, -0.9]}
+          scale={1}
           connectedTo={[csharp, mysql, postgresql]}
         />
         <Node
           ref={django}
           name="django"
           color="#204090"
-          position={[0.9, -0.3, -0.9]}
-          scale={0.2}
+          position={[2.5, -1.3, -0.9]}
+          scale={1}
           connectedTo={[python, mysql, postgresql]}
         />
         <Node
@@ -129,31 +129,31 @@ function Skills() {
           name="graphql"
           color="#ff00ee"
           position={[0, 0, -0.9]}
-          scale={0.2}
+          scale={1}
           connectedTo={[dotnet, django]}
         />
         <Node
           ref={restApi}
           name="restApi"
           color="#204090"
-          position={[0, -0.3, -0.9]}
-          scale={0.2}
+          position={[0, -1.3, -0.9]}
+          scale={1}
           connectedTo={[dotnet, django]}
         />
         <Node
           ref={postgresql}
           name="PostgreSQL"
           color="#00b3ff"
-          position={[0.9, -0.8, -0.9]}
-          scale={0.2}
+          position={[3, -3, -0.9]}
+          scale={1}
           connectedTo={[]}
         />
         <Node
           ref={mysql}
           name="MySQL"
           color="#ffa200"
-          position={[1.4, -0.8, -0.9]}
-          scale={0.2}
+          position={[5, -3, -0.9]}
+          scale={1}
           connectedTo={[]}
         />
       </Nodes>
