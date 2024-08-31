@@ -5,7 +5,7 @@ import file from "../../../assets/textures/about-me.hdr";
 import MonitorStatic from "./MonitorStatic";
 import { useTranslation } from "react-i18next";
 
-const AboutMe = ({ id }) => {
+const AboutMe = () => {
   const ref = useRef();
   const material = useMemo(
     () =>

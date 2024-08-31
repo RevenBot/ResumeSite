@@ -1,32 +1,18 @@
-import { Image, Text, useCursor } from "@react-three/drei";
+import { Image, useCursor } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
-import { Color } from "three";
 import { easing } from "maath";
 import { RigidBody } from "@react-three/rapier";
 
-const GOLDENRATIO = 1.61803398875;
 
-function Figure({ url, c = new Color(), ...props }) {
+function Figure({ url, ...props }) {
   const image = useRef();
   const frame = useRef();
   const [hovered, hover] = useState(false);
-  const [rnd] = useState(() => Math.random());
 
-  const aspectRatio = 1902 / 914; // Calculate the aspect ratio
-  const width = 3; // Desired width
-  const height = width / aspectRatio; // Calculate the height based on the aspect ratio
 
   useCursor(hovered);
-  useFrame((state, dt) => {
-    // image.current.material.zoom =
-    //   1.2 + Math.sin(rnd * 1000 + state.clock.elapsedTime / 3) / 2;
-    // easing.damp3(
-    //   image.current.scale,
-    //   [0.98 * (hovered ? 0.85 : 1), 0.9 * (hovered ? 0.905 : 1), 1],
-    //   0.1,
-    //   dt,
-    // );
+  useFrame((_, dt) => {
     easing.dampC(
       frame.current.material.color,
       hovered ? "orange" : "white",

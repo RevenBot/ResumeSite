@@ -7,7 +7,7 @@ import { useThree } from "@react-three/fiber";
 import { useEffect } from "react";
 
 const Memories = ({ id }) => {
-  const [match, params] = useRoute("frame/:id");
+  const [, params] = useRoute("frame/:id");
 
   const images = [
     // Front
