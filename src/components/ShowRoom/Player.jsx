@@ -7,7 +7,6 @@ const Player = () => {
     { name: "backward", keys: ["ArrowDown", "KeyS"] },
     { name: "leftward", keys: ["ArrowLeft", "KeyA"] },
     { name: "rightward", keys: ["ArrowRight", "KeyD"] },
-    { name: "jump", keys: ["Space"] },
     { name: "run", keys: ["Shift"] },
   ];
 
@@ -17,9 +16,9 @@ const Player = () => {
         <Gltf
           castShadow
           receiveShadow
-          scale={0.315}
+          scale={0.3}
           position={[0, -1, 0]}
-          src="/ghost_w_tophat-transformed.glb"
+          src="/spaceship.glb"
         />
       </Controller>
     </KeyboardControls>
