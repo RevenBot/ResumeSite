@@ -20,12 +20,6 @@ function CarouselContainer({ frames }) {
       {match && (<>
         <CarouselItems
           frames={frames} />
-        <OrbitControls makeDefault
-           minPolarAngle={0}
-          maxPolarAngle={Math.PI / 2}
-          minDistance={1}
-          maxDistance={15}
-        />
       </>)}
       <Environment preset="night" background={true} blur={0.3} />
     </group>
