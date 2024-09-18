@@ -1,7 +1,6 @@
-import { Environment, SpotLight, Text3D } from "@react-three/drei";
+import { Environment, Text3D } from "@react-three/drei";
 import { useEffect, useMemo, useRef } from "react";
 import { MeshStandardMaterial } from "three";
-import file from "../../../assets/textures/about-me.hdr";
 import { useTranslation } from "react-i18next";
 import { Physics, RigidBody } from "@react-three/rapier";
 import MonitorStaticPhysic from "./MonitorStaticPhysic";

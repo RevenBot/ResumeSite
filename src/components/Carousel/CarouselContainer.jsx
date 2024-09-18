@@ -1,7 +1,6 @@
 import {
   Environment,
   FlyControls,
-  OrbitControls,
   ScrollControls,
 } from "@react-three/drei";
 import { useRoute } from "wouter";
