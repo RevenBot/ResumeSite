@@ -45,7 +45,7 @@ export function Frame({
 
   return (
     <group
-      rotation={match ? [0, Math.PI * 4, 0] : rotation}
+      rotation={match ? [0, Math.PI * 2, 0] : rotation}
       position={match ? [0, 0, 0] : position}
       {...props}
     >
@@ -91,7 +91,6 @@ export function Frame({
           side={THREE.DoubleSide}
         >
           <ambientLight color={bg} intensity="1" />
-          <color attach="background" args={[bg]} />
           {children}
         </MeshPortalMaterial>
       </mesh>

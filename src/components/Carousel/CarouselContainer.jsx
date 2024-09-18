@@ -1,4 +1,9 @@
-import { Environment, FlyControls, OrbitControls, ScrollControls } from "@react-three/drei";
+import {
+  Environment,
+  FlyControls,
+  OrbitControls,
+  ScrollControls,
+} from "@react-three/drei";
 import { useRoute } from "wouter";
 import Rig from "./RigCarousel";
 import Banner from "./BannerCarousel";
@@ -17,11 +22,17 @@ function CarouselContainer({ frames }) {
           <Banner scale={3.5} position={[0, -1.5, 0]} />
         </ScrollControls>
       )}
-      {match && (<>
-        <CarouselItems
-          frames={frames} />
-      </>)}
-      <Environment preset="night" background={true} blur={0.3} />
+      {match && (
+        <>
+          <CarouselItems frames={frames} />
+        </>
+      )}
+      <Environment
+        path="/"
+        files={"HDR_blue_nebulae2k.hdr"}
+        background={true}
+        blur={0.3}
+      />
     </group>
   );
 }
