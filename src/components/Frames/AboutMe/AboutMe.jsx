@@ -20,7 +20,7 @@ const AboutMe = ({ id }) => {
     return () => {
       document.exitPointerLock();
     };
-  }, [params?.id]);
+  }, [params?.id,id,gl]);
   const material = useMemo(
     () =>
       new MeshStandardMaterial({

@@ -9,7 +9,7 @@ import { DoubleSide, Vector3 } from "three";
 
 export const context = createContext();
 
-export const Circle = forwardRef(
+export const CirclePhysical = forwardRef(
   (
     {
       children,
@@ -36,7 +36,7 @@ export const Circle = forwardRef(
   },
 );
 
-Circle.displayName = "Circle";
+CirclePhysical.displayName = "CirclePhysical";
 
 export function NodesPhysics({ children }) {
   const group = useRef();
@@ -134,8 +134,8 @@ export function NodesPhysics({ children }) {
       {children}
       {lines.map(({ start, end }, index) => (
         <group key={index} position-z={0}>
-          <Circle color={"#ffffff"} scale={1} position={start} />
-          <Circle color={"blue"} scale={1} position={end} />
+          <CirclePhysical color={"#ffffff"} scale={1} position={start} />
+          <CirclePhysical color={"blue"} scale={1} position={end} />
         </group>
       ))}
     </context.Provider>

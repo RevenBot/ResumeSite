@@ -5,7 +5,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import { Circle, context } from "./NodesPhysics";
+import { CirclePhysical, context } from "./NodesPhysics";
 import { Vector3 } from "three";
 import { Svg, Text3D } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
@@ -39,7 +39,7 @@ const NodePhysical = forwardRef(
     useLayoutEffect(() => {
       set((nodes) => [...nodes, state]);
       return () => void set((nodes) => nodes.filter((n) => n !== state));
-    }, [state, pos]);
+    }, [state, pos,set]);
     // Drag n drop, hover
     const [hovered, setHovered] = useState(false);
 
@@ -66,8 +66,8 @@ const NodePhysical = forwardRef(
         position={position}
         {...props}
       >
-        <Circle opacity={0.2} radius={0.5} color={color} {...props}>
-          <Circle
+        <CirclePhysical opacity={0.2} radius={0.5} color={color} {...props}>
+          <CirclePhysical
             radius={0.25}
             position={[0, 0, 0.0]}
             onPointerOver={() => setHovered(true)}
@@ -82,40 +82,13 @@ const NodePhysical = forwardRef(
               {name}
             </Text3D>
             <Svg position={[0, 0, 0.01]} scale={0.01} src={svgUrl} />
-          </Circle>
-        </Circle>
+          </CirclePhysical>
+        </CirclePhysical>
       </RigidBody>
     );
   },
 );
 
 NodePhysical.displayName = "NodePhysical";
-
-export const CirclePhysical = forwardRef(
-  (
-    {
-      children,
-      opacity = 1,
-      radius = 0.05,
-      segments = 32,
-      color = "#ff1050",
-      ...props
-    },
-    ref,
-  ) => {
-    return (
-      <mesh ref={ref} {...props}>
-        <sphereGeometry args={[radius, segments]} />
-        <meshBasicMaterial
-          transparent={opacity < 1}
-          opacity={opacity}
-          color={color}
-          side={DoubleSide}
-        />
-        {children}
-      </mesh>
-    );
-  },
-);
 
 export default NodePhysical;
