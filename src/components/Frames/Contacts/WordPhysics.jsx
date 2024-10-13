@@ -1,6 +1,6 @@
-import { Billboard, Text3D } from "@react-three/drei";
+import { Text3D } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { CuboidCollider, RigidBody } from "@react-three/rapier";
+import { RigidBody } from "@react-three/rapier";
 import { useEffect, useRef, useState } from "react";
 import { Color } from "three";
 

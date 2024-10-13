@@ -33,10 +33,6 @@ function Contact({ id }) {
     [],
   );
 
-  const OnClick = (link) => {
-    if (link) window.open(link, "_blank");
-  };
-
   useEffect(() => {
     if (params?.id == id) {
       gl.domElement.requestPointerLock();
