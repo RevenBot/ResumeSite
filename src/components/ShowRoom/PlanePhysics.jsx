@@ -17,7 +17,7 @@ const PlanePhysics = () => {
           maxDepthThreshold={1.4}
           color="#050505"
           metalness={0.5}
-          envMapIntensity={400}
+          envMapIntensity={1}
         />
       </mesh>
     </RigidBody>
