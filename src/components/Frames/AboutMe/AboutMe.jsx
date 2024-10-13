@@ -12,15 +12,6 @@ import Player from "../../ShowRoom/Player";
 const AboutMe = ({ id }) => {
   const [, params] = useRoute("frame/:id");
   const { gl } = useThree();
-
-  useEffect(() => {
-    if (params?.id == id) {
-      gl.domElement.requestPointerLock();
-    }
-    return () => {
-      document.exitPointerLock();
-    };
-  }, [params?.id,id,gl]);
   const material = useMemo(
     () =>
       new MeshStandardMaterial({
@@ -41,6 +32,15 @@ const AboutMe = ({ id }) => {
     color: "white",
   };
   const { t } = useTranslation("about-me");
+
+  useEffect(() => {
+    if (params?.id == id) {
+      gl.domElement.requestPointerLock();
+    }
+    return () => {
+      document.exitPointerLock();
+    };
+  }, [params?.id,id,gl]);
   return (
     <group position={[-5, -10, -20]}>
       <color attach="background" args={["#191920"]} />
