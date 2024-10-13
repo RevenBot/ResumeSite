@@ -1,40 +1,34 @@
-import { Environment, Text3D } from "@react-three/drei";
-import file from "../../../assets/textures/contacts.hdr";
-import { MeshStandardMaterial } from "three";
-import { useMemo, useRef } from "react";
+import { Environment } from "@react-three/drei";
+import { useEffect, useMemo } from "react";
+import { useRoute } from "wouter";
+import { useThree } from "@react-three/fiber";
+import { Physics } from "@react-three/rapier";
+import PlanePhysics from "../../ShowRoom/PlanePhysics";
+import Player from "../../ShowRoom/Player";
+import WordPhysical from "./WordPhysics";
+import MonitorStaticPhysic from "../AboutMe/MonitorStaticPhysic";
 
-function Contact() {
-  const ref = useRef();
-  const material = useMemo(
-    () =>
-      new MeshStandardMaterial({
-        roughness: 0,
-        color: "#bbbbbb",
-      }),
-    [],
-  );
-
-  const fontProps = {
-    font: "/Inter_Medium_Regular.json?url",
-    fontSize: 0.5,
-    letterSpacing: -0.05,
-    lineHeight: 1,
-    "material-toneMapped": false,
-  };
+function Contact({ id }) {
+  const [, params] = useRoute("frame/:id");
+  const { gl } = useThree();
 
   const words = useMemo(
     () => [
       {
         text: "Linkedin",
         link: "https://www.linkedin.com/in/kevin-de-jesus-sinchi-soto",
-        position: [-2, 2.5, -1],
+        position: [-15, 1, -8],
       },
       {
         text: "Github",
         link: "https://github.com/RevenBot",
-        position: [0.5, 0, -1],
+        position: [0, 1, -3],
       },
-      { text: "revenbot@proton.me", link: "", position: [-1.7, -2.5, -1] },
+      {
+        text: "revenbot@proton.me",
+        link: "",
+        position: [15, 1, -8],
+      },
     ],
     [],
   );
@@ -43,21 +37,37 @@ function Contact() {
     if (link) window.open(link, "_blank");
   };
 
+  useEffect(() => {
+    if (params?.id == id) {
+      gl.domElement.requestPointerLock();
+    }
+    return () => {
+      document.exitPointerLock();
+    };
+  }, [params?.id, id, gl]);
   return (
     <group>
-      {words.map((item, i) => (
-        <Text3D
-          key={i}
-          ref={ref}
-          position={item.position}
-          onClick={() => OnClick(item.link)}
-          {...fontProps}
-          material={material}
-        >
-          {item.text}
-        </Text3D>
-      ))}
-      <Environment files={file} background />
+      <color attach="background" args={["#191920"]} />
+      <fog attach="fog" args={["#191920", 0, 15]} />
+
+      <Physics timeStep="vary">
+        <PlanePhysics />
+        {params?.id == id && <Player />}
+        {words.map((item, i) => (
+          <WordPhysical key={i} wordData={item} />
+        ))}
+        <MonitorStaticPhysic position={[-7, 0, -4]} scale={1.5}>
+          {`:)  HR  :)`}
+        </MonitorStaticPhysic>
+        <MonitorStaticPhysic position={[6, 0, -1.5]} scale={1.2}>
+          {`^ ^ Projects ^ ^`}
+        </MonitorStaticPhysic>
+      </Physics>
+      <Environment
+        path="/"
+        files={"HDR_blue_nebulae2k.hdr"}
+        background={true}
+      />
     </group>
   );
 }

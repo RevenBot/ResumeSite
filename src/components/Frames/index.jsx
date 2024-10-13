@@ -25,7 +25,7 @@ const frames = [
     title: "Contacts",
     footer: "3",
     description: "contacts",
-    mesh: <Contact />,
+    mesh: <Contact id={"contacts"} />,
   },
   {
     id: "project-memories",
