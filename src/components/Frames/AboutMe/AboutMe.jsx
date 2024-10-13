@@ -1,5 +1,5 @@
 import { Environment, Text3D } from "@react-three/drei";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo } from "react";
 import { MeshStandardMaterial } from "three";
 import { useTranslation } from "react-i18next";
 import { Physics, RigidBody } from "@react-three/rapier";
@@ -20,8 +20,7 @@ const AboutMe = ({ id }) => {
     return () => {
       document.exitPointerLock();
     };
-  }, [params?.id]);
-  const ref = useRef();
+  }, [params?.id,id,gl]);
   const material = useMemo(
     () =>
       new MeshStandardMaterial({
@@ -56,12 +55,7 @@ const AboutMe = ({ id }) => {
         </MonitorStaticPhysic>
         <PlanePhysics />
         <RigidBody type="fixed" colliders="cuboid">
-          <Text3D
-            ref={ref}
-            {...fontProps}
-            material={material}
-            position={[-2, 4, 0]}
-          >
+          <Text3D {...fontProps} material={material} position={[-2, 4, 0]}>
             {t("phrase")}
           </Text3D>
         </RigidBody>
@@ -73,7 +67,6 @@ const AboutMe = ({ id }) => {
         </MonitorStaticPhysic>
         <RigidBody type="dynamic" colliders="ball">
           <Text3D
-            ref={ref}
             {...fontProps}
             material={material}
             position={[1, 6, -10]}

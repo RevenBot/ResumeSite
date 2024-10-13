@@ -18,7 +18,7 @@ const frames = [
     title: "Skills",
     footer: "2",
     description: "skills",
-    mesh: <Skills />,
+    mesh: <Skills id={"skills"} />,
   },
   {
     id: "contacts",
