@@ -1,38 +1,51 @@
-import ActiveCard from "./Card";
+import { useRoute } from "wouter";
+import Figures from "./../../ShowRoom/Figures";
+import { Physics, RigidBody } from "@react-three/rapier";
+import Player from "../../ShowRoom/Player";
+import { useThree } from "@react-three/fiber";
+import { useEffect } from "react";
+import PlanePhysics from "../../ShowRoom/PlanePhysics";
 
-const WordleSolver = () => {
+const WordleSolver = ({ id }) => {
+  const [, params] = useRoute("frame/:id");
+
+  const images = [
+    {
+      position: [7, 0, -2],
+      rotation: [0,(11 * Math.PI) /6, 0],
+      url: "/img/projects/wordle-solver/main.png?url",
+    },
+    {
+      position: [-7, 0, -2],
+      rotation: [0,-(11 * Math.PI) /6, 0],
+      url: "/img/projects/wordle-solver/solver.png?url",
+    },
+    {
+      position: [0, 0, -8],
+      rotation: [0, 0, 0],
+      url: "/img/projects/wordle-solver/results.png?url",
+    }
+  ];
+  const { gl } = useThree();
+
+  useEffect(() => {
+    if (params?.id == id) {
+      gl.domElement.requestPointerLock();
+    }
+    return () => {
+      document.exitPointerLock();
+    };
+  }, [params?.id]);
+
   return (
-    <group scale={0.4}>
-      <ActiveCard
-        position={[-10, 0, -9]}
-        rotation={[0, Math.PI / 4, 0]}
-        url={"/img/projects/wordle-solver/main.png?url"}
-        textContainer={{
-          position: [-8, 1, 0.1],
-          anchorX: "left",
-          text: "HomePage",
-        }}
-      />
-      <ActiveCard
-        url={"/img/projects/wordle-solver/solver.png?url"}
-        position={[0, 0, -12]}
-        rotation={[0, 0, 0]}
-        textContainer={{
-          position: [1, -3, 0.1],
-          anchorX: "right",
-          text: "Solver",
-        }}
-      />
-      <ActiveCard
-        url={"/img/projects/wordle-solver/results.png?url"}
-        position={[10, 0, -9]}
-        rotation={[0, (7 * Math.PI) / 4, 0]}
-        textContainer={{
-          position: [7, 1, 0.1],
-          anchorX: "right",
-          text: "Results",
-        }}
-      />
+    <group position={[0, -5, 0]}>
+      <Physics timeStep="vary">
+        <RigidBody type="fixed" colliders="trimesh">
+          <PlanePhysics/>
+        </RigidBody>
+        <Figures images={images} />
+        {params?.id == id && <Player />}
+      </Physics>
     </group>
   );
 };

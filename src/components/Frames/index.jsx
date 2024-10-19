@@ -39,14 +39,14 @@ const frames = [
     title: "Wordle Solver",
     footer: "5",
     description: "default",
-    mesh: <WordleSolver />,
+    mesh: <WordleSolver id={"project-wordle"} />,
   },
   {
     id: "resume",
     title: "Resume",
     footer: "6",
     description: "default",
-    mesh: <Resume />,
+    mesh: <Resume id={"resume"} />,
   },
   {
     id: "07",
