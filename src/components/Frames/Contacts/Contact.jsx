@@ -1,4 +1,3 @@
-import { Environment } from "@react-three/drei";
 import { useEffect, useMemo } from "react";
 import { useRoute } from "wouter";
 import { useThree } from "@react-three/fiber";
@@ -17,17 +16,17 @@ function Contact({ id }) {
       {
         text: "Linkedin",
         link: "https://www.linkedin.com/in/kevin-de-jesus-sinchi-soto",
-        position: [-15, 1, -8],
+        position: [-15, 0, -8],
       },
       {
         text: "Github",
         link: "https://github.com/RevenBot",
-        position: [0, 1, -3],
+        position: [0, 0, -3],
       },
       {
         text: "revenbot@proton.me",
         link: "",
-        position: [15, 1, -8],
+        position: [15, 0, -8],
       },
     ],
     [],
@@ -43,9 +42,6 @@ function Contact({ id }) {
   }, [params?.id, id, gl]);
   return (
     <group>
-      <color attach="background" args={["#191920"]} />
-      <fog attach="fog" args={["#191920", 0, 15]} />
-
       <Physics timeStep="vary">
         <PlanePhysics />
         {params?.id == id && <Player />}
@@ -59,11 +55,6 @@ function Contact({ id }) {
           {`^ ^ Projects ^ ^`}
         </MonitorStaticPhysic>
       </Physics>
-      <Environment
-        path="/"
-        files={"HDR_blue_nebulae2k.hdr"}
-        background={true}
-      />
     </group>
   );
 }
