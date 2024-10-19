@@ -1,7 +1,7 @@
 import { createRef, useEffect, useState } from "react";
 import { Environment } from "@react-three/drei";
-import file from "../../../assets/textures/nebula.hdr";
-import { useFrame, useThree } from "@react-three/fiber";
+import file from "../../../assets/textures/nebula720p.hdr";
+import { useThree } from "@react-three/fiber";
 import { useRoute } from "wouter";
 import { Physics } from "@react-three/rapier";
 import PlanePhysics from "../../ShowRoom/PlanePhysics";
@@ -32,11 +32,6 @@ function Skills({ id }) {
   const [, params] = useRoute("frame/:id");
   const { gl } = useThree();
 
-  useFrame((state) => {
-    if (params?.id == id) state.scene.backgroundRotation.y = 1.4;
-    else state.scene.backgroundRotation.y = -0.2;
-  });
-
   useEffect(() => {
     if (params?.id == id) {
       gl.domElement.requestPointerLock();
@@ -57,7 +52,7 @@ function Skills({ id }) {
             name="frontend"
             color="#204090"
             position={[-2, 1, -20]}
-            scale={1.5}
+            scale={1.6}
             connectedTo={[backend]}
           />
           <NodePhysical
@@ -65,7 +60,7 @@ function Skills({ id }) {
             name="    html"
             color="#fcba03"
             position={[-12, 1, -12]}
-            scale={1.5}
+            scale={1.6}
             connectedTo={[frontend, react, blazor]}
           />
           <NodePhysical
@@ -73,7 +68,7 @@ function Skills({ id }) {
             name="    css"
             color="#001aff"
             position={[-12, 1, -6]}
-            scale={1.5}
+            scale={1.6}
             connectedTo={[frontend, react, blazor]}
           />
           <NodePhysical
@@ -81,7 +76,7 @@ function Skills({ id }) {
             name="javascript"
             color="#204090"
             position={[-12, 1, -2]}
-            scale={1.5}
+            scale={1.6}
             connectedTo={[frontend, react, blazor]}
           />
           <NodePhysical
@@ -89,7 +84,7 @@ function Skills({ id }) {
             name="   react"
             color="#00bbff"
             position={[-6, 1, -12]}
-            scale={1.5}
+            scale={1.6}
             connectedTo={[frontend, graphql]}
           />
           <NodePhysical
@@ -97,7 +92,7 @@ function Skills({ id }) {
             name="blazor"
             color="#000dff"
             position={[-6, 1, -6]}
-            scale={1.5}
+            scale={1.6}
             connectedTo={[frontend, restApi]}
           />
 
@@ -106,7 +101,7 @@ function Skills({ id }) {
             name="backend"
             color="#ff0000"
             position={[2, 1, -20]}
-            scale={1.5}
+            scale={1.6}
             connectedTo={[csharp, python, dotnet]}
           />
           <NodePhysical
@@ -114,7 +109,7 @@ function Skills({ id }) {
             name="      c#"
             color="#00ff1a"
             position={[12, 1, -12]}
-            scale={1.5}
+            scale={1.6}
             connectedTo={[]}
           />
           <NodePhysical
@@ -122,7 +117,7 @@ function Skills({ id }) {
             name="python"
             color="#eeff00"
             position={[12, 1, -6]}
-            scale={1.5}
+            scale={1.6}
             connectedTo={[]}
           />
           <NodePhysical
@@ -130,7 +125,7 @@ function Skills({ id }) {
             name="dotnet"
             color="#204090"
             position={[6, 1, -12]}
-            scale={1.5}
+            scale={1.6}
             connectedTo={[csharp, mysql, postgresql]}
           />
           <NodePhysical
@@ -138,7 +133,7 @@ function Skills({ id }) {
             name="django"
             color="#204090"
             position={[6, 1, -6]}
-            scale={1.5}
+            scale={1.6}
             connectedTo={[python, mysql, postgresql]}
           />
           <NodePhysical
@@ -146,7 +141,7 @@ function Skills({ id }) {
             name="graphql"
             color="#ff00ee"
             position={[0, 1, -10]}
-            scale={1.5}
+            scale={1.6}
             connectedTo={[dotnet, django]}
           />
           <NodePhysical
@@ -154,7 +149,7 @@ function Skills({ id }) {
             name="restApi"
             color="#204090"
             position={[0, 1, -7]}
-            scale={1.5}
+            scale={1.6}
             connectedTo={[dotnet, django]}
           />
           <NodePhysical
@@ -162,7 +157,7 @@ function Skills({ id }) {
             name="PostgreSQL"
             color="#00b3ff"
             position={[7, 1, -2]}
-            scale={1.5}
+            scale={1.6}
             connectedTo={[]}
           />
           <NodePhysical
@@ -170,7 +165,7 @@ function Skills({ id }) {
             name="MySQL"
             color="#ffa200"
             position={[10, 1, -2]}
-            scale={1.5}
+            scale={1.6}
             connectedTo={[]}
           />
         </NodesPhysics>

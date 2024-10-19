@@ -1,12 +1,9 @@
-import {
-  Environment,
-  FlyControls,
-  ScrollControls,
-} from "@react-three/drei";
+import { Environment, FlyControls, ScrollControls } from "@react-three/drei";
 import { useRoute } from "wouter";
 import Rig from "./RigCarousel";
 import Banner from "./BannerCarousel";
 import CarouselItems from "./CarouselItems";
+import file from "../../assets/textures/about-me3d720p.hdr";
 
 function CarouselContainer({ frames }) {
   const [match] = useRoute("/frame/:id");
@@ -26,12 +23,7 @@ function CarouselContainer({ frames }) {
           <CarouselItems frames={frames} />
         </>
       )}
-      <Environment
-        path="/"
-        files={"HDR_blue_nebulae2k.hdr"}
-        background={true}
-        blur={0.3}
-      />
+      <Environment background={true} blur={0.3} files={file} />
     </group>
   );
 }

@@ -24,7 +24,7 @@ function WordPhysical({ wordData }) {
 
   useFrame(() => {
     ref.current.material.color.lerp(
-      color.set(hovered ? "#fa2720" : "#ddffff"),
+      color.set(hovered ? "#fa2720" : "#789DBC"),
       0.1,
     );
   });

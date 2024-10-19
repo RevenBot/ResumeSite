@@ -5,6 +5,8 @@ import Player from "../../ShowRoom/Player";
 import { useThree } from "@react-three/fiber";
 import { useEffect } from "react";
 import PlanePhysics from "../../ShowRoom/PlanePhysics";
+import file from "../../../assets/textures/projects720p.hdr";
+import { Environment } from "@react-three/drei";
 
 const WordleSolver = ({ id }) => {
   const [, params] = useRoute("frame/:id");
@@ -12,19 +14,19 @@ const WordleSolver = ({ id }) => {
   const images = [
     {
       position: [7, 0, -2],
-      rotation: [0,(11 * Math.PI) /6, 0],
+      rotation: [0, (11 * Math.PI) / 6, 0],
       url: "/img/projects/wordle-solver/main.png?url",
     },
     {
       position: [-7, 0, -2],
-      rotation: [0,-(11 * Math.PI) /6, 0],
+      rotation: [0, -(11 * Math.PI) / 6, 0],
       url: "/img/projects/wordle-solver/solver.png?url",
     },
     {
       position: [0, 0, -8],
       rotation: [0, 0, 0],
       url: "/img/projects/wordle-solver/results.png?url",
-    }
+    },
   ];
   const { gl } = useThree();
 
@@ -41,11 +43,12 @@ const WordleSolver = ({ id }) => {
     <group position={[0, -5, 0]}>
       <Physics timeStep="vary">
         <RigidBody type="fixed" colliders="trimesh">
-          <PlanePhysics/>
+          <PlanePhysics />
         </RigidBody>
         <Figures images={images} />
         {params?.id == id && <Player />}
       </Physics>
+      <Environment files={file} background />
     </group>
   );
 };

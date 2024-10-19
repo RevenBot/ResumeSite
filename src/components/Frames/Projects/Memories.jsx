@@ -5,6 +5,8 @@ import Player from "../../ShowRoom/Player";
 import { useThree } from "@react-three/fiber";
 import { useEffect } from "react";
 import PlanePhysics from "../../ShowRoom/PlanePhysics";
+import file from "../../../assets/textures/projects720p.hdr";
+import { Environment } from "@react-three/drei";
 
 const Memories = ({ id }) => {
   const [, params] = useRoute("frame/:id");
@@ -12,12 +14,12 @@ const Memories = ({ id }) => {
   const images = [
     {
       position: [7, 0, -2],
-      rotation: [0,(11 * Math.PI) /6, 0],
+      rotation: [0, (11 * Math.PI) / 6, 0],
       url: "/img/projects/memories/home.png?url",
     },
     {
       position: [-7, 0, -2],
-      rotation: [0,-(11 * Math.PI) /6, 0],
+      rotation: [0, -(11 * Math.PI) / 6, 0],
       url: "/img/projects/memories/index.png?url",
     },
     {
@@ -46,11 +48,12 @@ const Memories = ({ id }) => {
     <group position={[0, -5, 0]}>
       <Physics timeStep="vary">
         <RigidBody type="fixed" colliders="trimesh">
-          <PlanePhysics/>
+          <PlanePhysics />
         </RigidBody>
         <Figures images={images} />
         {params?.id == id && <Player />}
       </Physics>
+      <Environment files={file} background />
     </group>
   );
 };

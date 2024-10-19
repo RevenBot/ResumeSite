@@ -4,18 +4,22 @@ import { useRef, useState } from "react";
 import { easing } from "maath";
 import { RigidBody } from "@react-three/rapier";
 
-
-function Figure({ url, ...props }) {
-  const image = useRef();
+function Figure({ url, boxGeometry, materialMain, materialBasic, ...props }) {
   const frame = useRef();
+  const image = useRef();
   const [hovered, hover] = useState(false);
-
 
   useCursor(hovered);
   useFrame((_, dt) => {
+    easing.damp3(
+      image.current.scale,
+      [0.98 * (hovered ? 0.95 : 1), 0.9 * (hovered ? 0.905 : 1), 1],
+      0.1,
+      dt,
+    );
     easing.dampC(
       frame.current.material.color,
-      hovered ? "orange" : "white",
+      hovered ? "#00f" : "#ffffff",
       0.1,
       dt,
     );
@@ -28,27 +32,21 @@ function Figure({ url, ...props }) {
           onPointerOut={() => hover(false)}
           scale={[15, 6, 1]}
           position={[0, 3, 0]}
+          geometry={boxGeometry}
+          material={materialMain}
         >
-          <boxGeometry />
-          <meshStandardMaterial
-            color="#151515"
-            metalness={0.5}
-            roughness={0.5}
-            envMapIntensity={2}
-          />
           <mesh
             ref={frame}
             raycast={() => null}
             scale={[0.99, 0.93, 0.9]}
             position={[0, 0, 0.2]}
-          >
-            <boxGeometry />
-            <meshBasicMaterial toneMapped={false} fog={false} />
-          </mesh>
+            geometry={boxGeometry}
+            material={materialBasic}
+          ></mesh>
           <Image
-            raycast={() => null}
             ref={image}
-            scale={[0.914, 0.8, 1]} // Scale the image with the calculated dimensions
+            raycast={() => null}
+            scale={[0.98, 0.9, 1]}
             position={[0, 0, 0.7]}
             url={url}
           />
