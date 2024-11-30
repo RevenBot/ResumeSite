@@ -5,7 +5,7 @@ import { createContext } from "react";
 import { useMemo } from "react";
 import { useState } from "react";
 import { useRef } from "react";
-import { DoubleSide, Vector3 } from "three";
+import {  Vector3 } from "three";
 
 export const context = createContext();
 
@@ -28,7 +28,6 @@ export const CirclePhysical = forwardRef(
           transparent={opacity < 1}
           opacity={opacity}
           color={color}
-          side={DoubleSide}
         />
         {children}
       </mesh>
@@ -42,6 +41,7 @@ export function NodesPhysics({ children }) {
   const group = useRef();
   const groupRevert = useRef();
   const [nodes, set] = useState([]);
+  const vec = new Vector3();
   const lines = useMemo(() => {
     const lines = [];
     for (let node of nodes)
@@ -53,11 +53,11 @@ export function NodesPhysics({ children }) {
           ];
         })
         .forEach(([start, end]) => {
-          const a = new Vector3(end.x, end.y, end.z);
-          const b = new Vector3(start.x, start.y, start.z);
+          const a = vec.set(end.x, end.y, end.z).clone();
+          const b = vec.set(start.x, start.y, start.z).clone();
           lines.push({
-            start: b.clone(),
-            end: a.clone(),
+            start: b,
+            end: a,
           });
         });
     return lines;

@@ -6,8 +6,8 @@ import {
   useState,
 } from "react";
 import { CirclePhysical, context } from "./NodesPhysics";
-import { Vector3 } from "three";
-import { Svg, Text3D } from "@react-three/drei";
+import {  Vector3 } from "three";
+import { Svg, Text } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 
 const NodePhysical = forwardRef(
@@ -30,8 +30,7 @@ const NodePhysical = forwardRef(
     );
 
     const onCollision = (_) => {
-      const newPos = _.rigidBody?.translation();
-      setPos(new Vector3(newPos.x, newPos.y, newPos.z));
+      setPos(_.rigidBody?.translation());
       set((nodes) => [...nodes, state]);
     };
 
@@ -39,17 +38,17 @@ const NodePhysical = forwardRef(
     useLayoutEffect(() => {
       set((nodes) => [...nodes, state]);
       return () => void set((nodes) => nodes.filter((n) => n !== state));
-    }, [state, pos,set]);
+    }, [state, pos, set]);
     // Drag n drop, hover
     const [hovered, setHovered] = useState(false);
 
     const fontProps = {
-      font: "/Inter_Medium_Regular.json?url",
+      font: "/Inter-Bold.woff?url",
       fontSize: 1,
       letterSpacing: -0.09,
       lineHeight: 0.6,
       "material-toneMapped": false,
-      color: "red",
+      color: "#789DBC",
     };
 
     return (
@@ -74,13 +73,13 @@ const NodePhysical = forwardRef(
             onPointerOut={() => setHovered(false)}
             color={hovered ? "#ff1050" : color}
           >
-            <Text3D
+            <Text
               scale={props.scale * 0.09}
-              position={[-0.5, 0.3, 0.01]}
+              position={[0, 0.6, 0.01]}
               {...fontProps}
             >
               {name}
-            </Text3D>
+            </Text>
             <Svg position={[0, 0, 0.01]} scale={0.01} src={svgUrl} />
           </CirclePhysical>
         </CirclePhysical>

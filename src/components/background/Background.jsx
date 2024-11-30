@@ -7,6 +7,7 @@ import framesComponents from "../Frames";
 import Caos from "./Caos";
 import { useTranslation } from "react-i18next";
 import TimeoutMessage from "../Message/TimeoutMessage";
+import { AdaptiveDpr } from "@react-three/drei";
 
 const Background = () => {
   const { t } = useTranslation();
@@ -33,6 +34,7 @@ const Background = () => {
       <Canvas eventPrefix="client" onPointerLeave={() => reset()}>
         {mode && <Caos words={words} />}
         {!mode && <CarouselContainer frames={frames} />}
+        <AdaptiveDpr/>
       </Canvas>
     </>
   );

@@ -17,7 +17,10 @@ const Player = () => {
   return (
     <KeyboardControls map={keyboardMap}>
       <Controller position={[0, 10, 10]} maxVelLimit={5}>
-        <CuboidCollider args={[1, 1, 1]} mass={0} />
+        <CuboidCollider args={[1, 1, 1]} 
+        blockRotations={true} // Blocca tutte le rotazioni
+        lockTranslations={[true, true, false]}
+          mass={0.2} />
         <Gltf
           castShadow
           receiveShadow
