@@ -13,7 +13,6 @@ function EnvironmentSite({ isMobile }) {
     if (isMobile) {
       url = "/omegacanis480.jpg";
     }
-    console.log(url);
     const result = await loader.loadAsync(url);
     result.renderTarget.texture.mapping = EquirectangularReflectionMapping;
     // loader.dispose() call this if implementeW546,

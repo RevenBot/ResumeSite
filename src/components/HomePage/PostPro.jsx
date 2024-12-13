@@ -10,6 +10,7 @@ function Postpro() {
   useFrame((state) => (water.current.time = state.clock.elapsedTime * 4));
   return (
     <Effects disableGamma>
+      <filmPass args={[0.2, 0.5, 1500, false]} />
       <waterPass ref={water} factor={1} />
       <unrealBloomPass args={[undefined, 1.25, 1, 0]} />
     </Effects>
