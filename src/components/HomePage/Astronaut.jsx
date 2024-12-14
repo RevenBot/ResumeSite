@@ -1,13 +1,10 @@
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { applyProps, useFrame, useLoader } from "@react-three/fiber";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useFrame, useLoader } from "@react-three/fiber";
+import { useRef } from "react";
 import * as THREE from "three";
 
 const Astronaut = () => {
-  const { scene, nodes, materials } = useLoader(
-    GLTFLoader,
-    "/models/homepage/astronaut.glb",
-  );
+  const { scene } = useLoader(GLTFLoader, "/models/homepage/astronaut.glb");
   const v = new THREE.Vector3();
   const hand = useRef();
 

@@ -72,12 +72,13 @@ const Scene = ({ objects }) => {
   return (
     <group>
       <Library />
-      <Board page={pageId} onClickBack={(i) => updatePageId(null)} />
+      <Board page={pageId} onClickBack={() => updatePageId(null)} />
       <Text position={[15, 0, 130]} scale={10}>
         {hoverName}
       </Text>
       {distributedObjects.map((item) => (
         <Book
+          key={item.id}
           bookType={item.bookType}
           position={[item.position.x, item.position.y, item.position.z]}
           onClick={() => updatePageId(item)}

@@ -1,22 +1,22 @@
 import { useFrame } from "@react-three/fiber";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { MathUtils, Vector3 } from "three";
 import { Container, Root, Text } from "@react-three/uikit";
 import { Button } from "../default/button";
 import { useLocation } from "wouter";
 
 const Board = ({ page, onClickBack }) => {
-  const [p] = useState(new Vector3(0, 50, 160));
+  const [intialPosition] = useState(new Vector3(0, 50, 160));
+  const boardPosition = useMemo(() => new Vector3(0, 150, 0), []);
   const [, setLocation] = useLocation();
 
   useFrame((state, dt) => {
     state.camera.position.lerp(
-      page == null ? p : new Vector3(0, 150, 0),
+      page == null ? intialPosition : boardPosition,
       MathUtils.damp(0, 1, 3, dt),
     );
   });
   if (page == null) return null;
-  console.log(onClickBack);
   return (
     <>
       <mesh position={[-700, 300, -500]} rotation={[0, Math.PI / 4, 0]}>
