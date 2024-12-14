@@ -1,21 +1,51 @@
 const pages = [
   {
     id: 1,
-    name: "About Masdf asadfasdfasdfe",
+    name: "About Me",
     relativeUrl: "about-me",
-    bookType: "book",
+    bookType: "magicbook",
     region: "topLeft",
-    description:
-      "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+    description: "about-me",
   },
   {
     id: 2,
     name: "Skills",
     relativeUrl: "skills",
-    bookType: "oldbook2",
+    bookType: "oldbook1",
+    region: "topLeft",
+    description: "skills",
+  },
+  {
+    id: 3,
+    name: "Contacts",
+    relativeUrl: "contacts",
+    bookType: "oldbook1",
+    region: "topLeft",
+    description: "contacts",
+  },
+  {
+    id: 4,
+    name: "Memories",
+    relativeUrl: "project-memories",
+    bookType: "book",
     region: "topRight",
-    description:
-      "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.",
+    description: "project-memories",
+  },
+  {
+    id: 5,
+    name: "Wordle Solver",
+    relativeUrl: "project-wordlesolver",
+    bookType: "book",
+    region: "topRight",
+    description: "project-wordlesolver",
+  },
+  {
+    id: 6,
+    name: "Resume",
+    relativeUrl: "project-resume",
+    bookType: "book",
+    region: "topRight",
+    description: "project-resume",
   },
 ];
 

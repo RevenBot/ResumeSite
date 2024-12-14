@@ -4,11 +4,13 @@ import { MathUtils, Vector3 } from "three";
 import { Container, Root, Text } from "@react-three/uikit";
 import { Button } from "../default/button";
 import { useLocation } from "wouter";
+import { useTranslation } from "react-i18next";
 
 const Board = ({ page, onClickBack }) => {
   const [intialPosition] = useState(new Vector3(0, 50, 160));
   const boardPosition = useMemo(() => new Vector3(0, 150, 0), []);
   const [, setLocation] = useLocation();
+  const { t } = useTranslation("pages");
 
   useFrame((state, dt) => {
     state.camera.position.lerp(
@@ -16,7 +18,6 @@ const Board = ({ page, onClickBack }) => {
       MathUtils.damp(0, 1, 3, dt),
     );
   });
-  if (page == null) return null;
   return (
     <>
       <mesh position={[-700, 300, -500]} rotation={[0, Math.PI / 4, 0]}>
@@ -36,14 +37,16 @@ const Board = ({ page, onClickBack }) => {
       <mesh position={[0, 300, -500]}>
         <Root pixelSize={6} sizeX={1200} sizeY={800} flexDirection="row">
           <Container
-            borderWidth={10}
+            borderWidth={15}
             borderColor="#333"
             flexDirection="column"
             alignItems="center"
             flexGrow={4}
           >
             <Container flexDirection="column" gap={4}>
-              <Text color="white">{page.description}</Text>
+              <Text fontSize={10} color="white">
+                {page?.description != null && t(page?.description)}
+              </Text>
             </Container>
           </Container>
         </Root>

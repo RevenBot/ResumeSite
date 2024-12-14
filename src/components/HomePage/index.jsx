@@ -10,9 +10,6 @@ import pages from "../Pages/index.jsx";
 
 const HomePage = () => {
   const p = useMemo(() => pages);
-
-  console.log(p);
-
   return (
     <Canvas
       linear
