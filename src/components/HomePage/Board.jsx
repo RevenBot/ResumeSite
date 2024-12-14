@@ -64,7 +64,7 @@ const Board = ({ page, onClickBack }) => {
               flexGrow={1}
             >
               <Button
-                onClick={() => setLocation(`/frame/${page.relativeUrl}/`)}
+                onClick={() => setLocation(`/page/${page.relativeUrl}/`)}
                 variant="outline"
               >
                 <Text color="white">Go To</Text>
