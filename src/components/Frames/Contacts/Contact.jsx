@@ -1,16 +1,12 @@
-import { useEffect, useMemo } from "react";
-import { useRoute } from "wouter";
-import { useThree } from "@react-three/fiber";
+import { useMemo } from "react";
+import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
 import PlanePhysics from "../../ShowRoom/PlanePhysics";
 import Player from "../../ShowRoom/Player";
 import WordPhysical from "./WordPhysics";
 import MonitorStaticPhysic from "../AboutMe/MonitorStaticPhysic";
 
-function Contact({ id }) {
-  const [, params] = useRoute("frame/:id");
-  const { gl } = useThree();
-
+function Contact() {
   const words = useMemo(
     () => [
       {
@@ -32,19 +28,12 @@ function Contact({ id }) {
     [],
   );
 
-  useEffect(() => {
-    if (params?.id == id) {
-      gl.domElement.requestPointerLock();
-    }
-    return () => {
-      document.exitPointerLock();
-    };
-  }, [params?.id, id, gl]);
   return (
-    <group>
+    <Canvas onPointerDown={(e) => e.target.requestPointerLock()}>
+      <ambientLight color={"#fff"} intensity="1" />
       <Physics timeStep="vary">
         <PlanePhysics />
-        {params?.id == id && <Player />}
+        <Player />
         {words.map((item, i) => (
           <WordPhysical key={i} wordData={item} />
         ))}
@@ -55,7 +44,7 @@ function Contact({ id }) {
           {`^ ^ Projects ^ ^`}
         </MonitorStaticPhysic>
       </Physics>
-    </group>
+    </Canvas>
   );
 }
 

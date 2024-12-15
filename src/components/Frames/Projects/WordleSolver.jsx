@@ -1,16 +1,12 @@
-import { useRoute } from "wouter";
 import Figures from "./../../ShowRoom/Figures";
 import { Physics, RigidBody } from "@react-three/rapier";
 import Player from "../../ShowRoom/Player";
-import { useThree } from "@react-three/fiber";
-import { useEffect } from "react";
+import { Canvas } from "@react-three/fiber";
 import PlanePhysics from "../../ShowRoom/PlanePhysics";
 import file from "../../../assets/textures/projects720p.hdr";
 import { Environment } from "@react-three/drei";
 
-const WordleSolver = ({ id }) => {
-  const [, params] = useRoute("frame/:id");
-
+const WordleSolver = () => {
   const images = [
     {
       position: [7, 0, -2],
@@ -28,28 +24,19 @@ const WordleSolver = ({ id }) => {
       url: "/img/projects/wordle-solver/results.png?url",
     },
   ];
-  const { gl } = useThree();
-
-  useEffect(() => {
-    if (params?.id == id) {
-      gl.domElement.requestPointerLock();
-    }
-    return () => {
-      document.exitPointerLock();
-    };
-  }, [params?.id]);
 
   return (
-    <group position={[0, -5, 0]}>
+    <Canvas onPointerDown={(e) => e.target.requestPointerLock()}>
+      <ambientLight color={"#fff"} intensity="1" />
       <Physics timeStep="vary">
         <RigidBody type="fixed" colliders="trimesh">
           <PlanePhysics />
         </RigidBody>
         <Figures images={images} />
-        {params?.id == id && <Player />}
+        <Player />
       </Physics>
       <Environment files={file} background />
-    </group>
+    </Canvas>
   );
 };
 

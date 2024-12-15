@@ -1,6 +1,7 @@
 import { Gltf, KeyboardControls, SpotLight } from "@react-three/drei";
 import { CuboidCollider } from "@react-three/rapier";
 import Controller from "ecctrl";
+import { Suspense, useEffect } from "react";
 import { useRef } from "react";
 
 const Player = () => {
@@ -13,32 +14,48 @@ const Player = () => {
   ];
 
   const ref = useRef();
+  const light = useRef();
+
+  useEffect(() => {
+    if (light.current != null && ref.current != null) {
+      light.current.target.updateMatrixWorld();
+      light.current.target = ref.current;
+    }
+  }, []);
 
   return (
     <KeyboardControls map={keyboardMap}>
-      <Controller position={[0, 10, 10]} maxVelLimit={5}>
-        <CuboidCollider args={[1, 1, 1]} 
-        blockRotations={true} // Blocca tutte le rotazioni
-        lockTranslations={[true, true, false]}
-          mass={0.2} />
-        <Gltf
-          castShadow
-          receiveShadow
-          scale={0.4}
-          position={[0, -0.5, 0]}
-          src="/spaceship.glb"
-        />
-        <SpotLight
-          position={[0, 0.2, 1]}
-          angle={0.9}
-          penumbra={1}
-          intensity={2}
-          distance={8}
-          castShadow
-          target={ref.current}
-        />
-        <mesh position={[0, 0, 2]} ref={ref} visible={false} />
-      </Controller>
+      <group position={[0, 10, 10]}>
+        <Suspense fallback={null}>
+          <Controller maxVelLimit={5}>
+            <mesh position={[0, -1, 4]} ref={ref}></mesh>
+            <CuboidCollider
+              args={[1, 1, 1]}
+              blockRotations={true} // Blocca tutte le rotazioni
+              lockTranslations={[true, true, false]}
+              mass={0.2}
+            />
+            <Gltf
+              castShadow
+              receiveShadow
+              scale={0.4}
+              position={[0, -0.5, 0]}
+              src="/spaceship.glb"
+            />
+            <SpotLight
+              ref={light}
+              position={[0, 0.2, 1]}
+              angle={0.5}
+              color={"#fff"}
+              penumbra={1}
+              intensity={2000}
+              distance={8}
+              castShadow
+              target={ref.current}
+            />
+          </Controller>
+        </Suspense>
+      </group>
     </KeyboardControls>
   );
 };

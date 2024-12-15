@@ -1,15 +1,14 @@
-import { createRef, useEffect, useState } from "react";
+import { createRef, useState } from "react";
 import { Environment } from "@react-three/drei";
 import file from "../../../assets/textures/nebula720p.hdr";
-import { useThree } from "@react-three/fiber";
-import { useRoute } from "wouter";
+import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
 import PlanePhysics from "../../ShowRoom/PlanePhysics";
 import Player from "../../ShowRoom/Player";
 import NodePhysical from "./NodePhysics";
 import { NodesPhysics } from "./NodesPhysics";
 
-function Skills({ id }) {
+function Skills() {
   const [
     [
       frontend,
@@ -29,23 +28,13 @@ function Skills({ id }) {
       postgresql,
     ],
   ] = useState(() => [...Array(15)].map(createRef));
-  const [, params] = useRoute("frame/:id");
-  const { gl } = useThree();
-
-  useEffect(() => {
-    if (params?.id == id) {
-      gl.domElement.requestPointerLock();
-    }
-    return () => {
-      document.exitPointerLock();
-    };
-  }, [params?.id]);
 
   return (
-    <group>
+    <Canvas onPointerDown={(e) => e.target.requestPointerLock()}>
+      <ambientLight color={"#fff"} intensity="1" />
       <Physics timeStep="vary">
         <PlanePhysics />
-        {params?.id == id && <Player />}
+        <Player />
         <NodesPhysics>
           <NodePhysical
             ref={frontend}
@@ -171,7 +160,7 @@ function Skills({ id }) {
         </NodesPhysics>
       </Physics>
       <Environment files={file} background />
-    </group>
+    </Canvas>
   );
 }
 

@@ -3,24 +3,40 @@ import Overlay from "./components/Overlay/Overlay";
 import Background from "./components/background/Background";
 import Test from "./components/Test/Test";
 import HomePage from "./components/HomePage";
+import pages from "./components/Frames/index";
+import { useMemo } from "react";
 
-export const App = () => (
-  <>
-    <Overlay />
-    <Switch>
-      <Route path="/" component={HomePage} />
-      <Route path="/page/:id" component={Background} />
+export const App = () => {
+  const pagesroutes = useMemo(() => pages);
 
-      <Route path="/test/">
-        <Test />
-      </Route>
-      <Route path="/test/:id">
-        <Test />
-      </Route>
+  return (
+    <>
+      <Overlay />
+      <Switch>
+        <Route path="/" component={HomePage} />
 
-      <Route>404: No such page!</Route>
-    </Switch>
-  </>
-);
+        {pagesroutes.map((item) => (
+          <Route
+            key={item.id}
+            path={`/page/${item.relativeUrl}`}
+            component={item.component}
+          />
+        ))}
+
+        <Route path="/test/">
+          <Test />
+        </Route>
+        <Route path="/test/:id">
+          <Test />
+        </Route>
+        <Route path="/old/">
+          <Background />
+        </Route>
+
+        <Route>404: No such page!</Route>
+      </Switch>
+    </>
+  );
+};
 
 export default App;
