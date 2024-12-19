@@ -2,7 +2,7 @@
   "about-me" : "Junior Full Stack Developer, determined to grow professionally,always eager to learn, and ready to face new challenges.",
   "skills" : "Always ready to adapt and learn.",
   "contacts" : "Interested in my work? Contact me!",
-  "project-memories" : "If it ain't broke, don't fix it",
-  "project-wordlesolver" : "If it ain't broke, don't fix it",
-  "project-resume" : "If it ain't broke, don't fix it"
+  "project-memories" : "Memories è un sito per condividere ricordi di animali o altre categorie. Sviluppato con Django, utilizza SQLite per il database, Bootstrap per il design responsivo e JavaScript per l’interattività.",
+  "project-wordlesolver" : "Worldle Solver è un'app sviluppata con .NET MAUI Blazor per risolvere il gioco Wordle. L'app utilizza algoritmi logici e un'interfaccia intuitiva per suggerire possibili soluzioni in base ai tuoi progressi.",
+  "project-resume" : "Resume è un sito portfolio creato con React.js e React Three Fiber per mostrare esperienze, competenze e progetti in modo interattivo. Integra grafica 3D per un’esperienza moderna e accattivante."
 }

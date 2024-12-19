@@ -54,7 +54,7 @@ const Board = ({ page, onClickBack }) => {
             )}
             {page?.stringLocalize != null && (
               <Container flexDirection="column" gap={4}>
-                <Text fontSize={10} color="white">
+                <Text fontSize={7} color="white">
                   {page?.stringLocalize != null && t(page?.stringLocalize)}
                 </Text>
               </Container>
@@ -67,7 +67,6 @@ const Board = ({ page, onClickBack }) => {
             {page?.linkButton != null && (
               <Container flexDirection="column" gap={4}>
                 <Button
-                  width={10}
                   height={5}
                   onClick={() => window.open(page?.linkButton, "_blank")}
                   variant="outline"

@@ -7,7 +7,7 @@ const pages = [
     region: "topLeft",
     stringLocalize: "about-me",
     imageUrl: null,
-    linkButton: null,
+    linkButton: "https://github.com/RevenBot",
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const pages = [
     region: "topLeft",
     stringLocalize: "skills",
     imageUrl:
-      "https://skillicons.dev/icons?i=git,kubernetes,docker,c,vim&theme=dark",
+      "https://skillicons.dev/icons?i=bash,cs,css,debian,discord,django,docker,dotnet,git,github,go,html,java,js,linux,mysql,neovim,netlify,postgres,postman,py,react,threejs,ts,vim,visualstudio,vite,vscode",
     linkButton: null,
   },
   {
@@ -38,7 +38,7 @@ const pages = [
     region: "topRight",
     stringLocalize: "project-memories",
     imageUrl: null,
-    linkButton: "https://github.com/",
+    linkButton: "https://github.com/RevenBot/Memories",
   },
   {
     id: 5,
@@ -48,7 +48,7 @@ const pages = [
     region: "topRight",
     stringLocalize: "project-wordlesolver",
     imageUrl: null,
-    linkButton: null,
+    linkButton: "https://github.com/RevenBot/WordleSolver",
   },
   {
     id: 6,
@@ -58,7 +58,7 @@ const pages = [
     region: "topRight",
     stringLocalize: "project-resume",
     imageUrl: null,
-    linkButton: null,
+    linkButton: "https://github.com/RevenBot/resumEsite",
   },
 ];
 
