@@ -9,7 +9,7 @@ import { useMemo } from "react";
 import pages from "../Pages/index.jsx";
 
 const HomePage = () => {
-  const p = useMemo(() => pages);
+  const p = useMemo(() => pages, []);
   return (
     <Canvas
       linear

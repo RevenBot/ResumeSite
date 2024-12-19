@@ -7,7 +7,7 @@ import pages from "./components/Frames/index";
 import { useMemo } from "react";
 
 export const App = () => {
-  const pagesroutes = useMemo(() => pages);
+  const pagesroutes = useMemo(() => pages, []);
 
   return (
     <>

@@ -1,12 +1,12 @@
 import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
-import * as THREE from "three";
+import { Object3D } from "three";
 
 function SwarmObjects({
   count,
   material,
   geometry,
-  dummy = new THREE.Object3D(),
+  dummy = new Object3D(),
 }) {
   const mesh = useRef();
   const particles = useMemo(() => {

@@ -1,7 +1,7 @@
-import * as THREE from "three";
 import { extend } from "@react-three/fiber";
+import { MeshBasicMaterial } from "three";
 
-class MeshSineMaterial extends THREE.MeshBasicMaterial {
+class MeshSineMaterial extends MeshBasicMaterial {
   constructor(parameters = {}) {
     super(parameters);
     this.setValues(parameters);

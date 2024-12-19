@@ -24,12 +24,12 @@ const Scene = ({ objects }) => {
   const [hoverName, setName] = useState(null);
 
   const objectSize = 10; // Dimensione di ogni oggetto
-  const regions = {
-    topLeft: { start: -90, end: 3 },
-    topRight: { start: 18, end: 113 },
-  };
 
   const distributedObjects = useMemo(() => {
+    const regions = {
+      topLeft: { start: -90, end: 3 },
+      topRight: { start: 18, end: 113 },
+    };
     const regionPositions = {
       topLeft: [],
       topRight: [],

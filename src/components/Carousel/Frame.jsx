@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
-import * as THREE from "three";
 import { useFrame, extend } from "@react-three/fiber";
 import { useCursor, MeshPortalMaterial, Text } from "@react-three/drei";
 import { useRoute, useLocation } from "wouter";
 import { easing, geometry } from "maath";
 import useStore from "../../context/banner/store";
+import { DoubleSide } from "three";
 
 extend(geometry);
 
@@ -88,7 +88,7 @@ export function Frame({
           ref={portal}
           worldUnits
           events={params?.id === id}
-          side={THREE.DoubleSide}
+          side={DoubleSide}
         >
           <ambientLight color={bg} intensity="1" />
           {children}

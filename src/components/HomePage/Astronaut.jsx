@@ -1,17 +1,17 @@
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useFrame, useLoader } from "@react-three/fiber";
 import { useRef } from "react";
-import * as THREE from "three";
+import { MathUtils, Vector3 } from "three";
 
 const Astronaut = () => {
   const { scene } = useLoader(GLTFLoader, "/models/homepage/astronaut.glb");
-  const v = new THREE.Vector3();
+  const v = new Vector3();
   const hand = useRef();
 
   useFrame((state) => {
     v.copy({ x: state.pointer.x, y: state.pointer.y, z: 0 });
     v.unproject(state.camera);
-    hand.current.rotation.x = THREE.MathUtils.lerp(
+    hand.current.rotation.x = MathUtils.lerp(
       hand.current.rotation.x,
       0,
       0.2,
