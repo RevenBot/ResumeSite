@@ -1,7 +1,7 @@
 import { useFrame } from "@react-three/fiber";
 import { useMemo, useState } from "react";
 import { MathUtils, Vector3 } from "three";
-import { Container, Root, Text } from "@react-three/uikit";
+import { Container, Image, Root, Text } from "@react-three/uikit";
 import { Button } from "../default/button";
 import { useLocation } from "wouter";
 import { useTranslation } from "react-i18next";
@@ -11,6 +11,7 @@ const Board = ({ page, onClickBack }) => {
   const boardPosition = useMemo(() => new Vector3(0, 150, 0), []);
   const [, setLocation] = useLocation();
   const { t } = useTranslation("pages");
+  const { t: tra } = useTranslation();
 
   useFrame((state, dt) => {
     state.camera.position.lerp(
@@ -29,7 +30,7 @@ const Board = ({ page, onClickBack }) => {
             flexGrow={1}
           >
             <Button onClick={() => onClickBack(null)} variant="outline">
-              <Text color="white">Back</Text>
+              <Text color="white">{tra("back")}</Text>
             </Button>
           </Container>
         </Root>
@@ -41,17 +42,44 @@ const Board = ({ page, onClickBack }) => {
             borderColor="#333"
             flexDirection="column"
             alignItems="center"
+            justifyContent="space-between"
             flexGrow={4}
           >
-            <Container flexDirection="column" gap={4}>
-              <Text fontSize={10} color="white">
-                {page?.description != null && t(page?.description)}
-              </Text>
-            </Container>
+            {page?.name != null && (
+              <Container flexDirection="column" gap={4}>
+                <Text fontSize={10} padding={8} color="white">
+                  {page?.name != null && t(page?.name)}
+                </Text>
+              </Container>
+            )}
+            {page?.stringLocalize != null && (
+              <Container flexDirection="column" gap={4}>
+                <Text fontSize={10} color="white">
+                  {page?.stringLocalize != null && t(page?.stringLocalize)}
+                </Text>
+              </Container>
+            )}
+            {page?.imageUrl != null && (
+              <Container flexDirection="column" gap={4}>
+                <Image width={150} src={page?.imageUrl} />
+              </Container>
+            )}
+            {page?.linkButton != null && (
+              <Container flexDirection="column" gap={4}>
+                <Button
+                  width={10}
+                  height={5}
+                  onClick={() => window.open(page?.linkButton, "_blank")}
+                  variant="outline"
+                >
+                  <Text color="white">{tra("visit")}</Text>
+                </Button>
+              </Container>
+            )}
           </Container>
         </Root>
       </mesh>
-      <mesh position={[700, 300, -500]} rotation={[0, (11 * Math.PI) / 6, 0]}>
+      <mesh position={[800, 300, -500]} rotation={[0, (11 * Math.PI) / 6, 0]}>
         <Root pixelSize={2} sizeX={200} sizeY={800} flexDirection="row">
           <Container
             flexDirection="row"
@@ -70,7 +98,7 @@ const Board = ({ page, onClickBack }) => {
                 onClick={() => setLocation(`/page/${page.relativeUrl}/`)}
                 variant="outline"
               >
-                <Text color="white">Go To</Text>
+                <Text color="white">3D</Text>
               </Button>
             </Container>
           </Container>

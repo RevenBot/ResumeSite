@@ -5,7 +5,9 @@ const pages = [
     relativeUrl: "about-me",
     bookType: "magicbook",
     region: "topLeft",
-    description: "about-me",
+    stringLocalize: "about-me",
+    imageUrl: null,
+    linkButton: null,
   },
   {
     id: 2,
@@ -13,7 +15,10 @@ const pages = [
     relativeUrl: "skills",
     bookType: "oldbook1",
     region: "topLeft",
-    description: "skills",
+    stringLocalize: "skills",
+    imageUrl:
+      "https://skillicons.dev/icons?i=git,kubernetes,docker,c,vim&theme=dark",
+    linkButton: null,
   },
   {
     id: 3,
@@ -21,7 +26,9 @@ const pages = [
     relativeUrl: "contacts",
     bookType: "oldbook1",
     region: "topLeft",
-    description: "contacts",
+    stringLocalize: "contacts",
+    imageUrl: null,
+    linkButton: null,
   },
   {
     id: 4,
@@ -29,7 +36,9 @@ const pages = [
     relativeUrl: "project-memories",
     bookType: "book",
     region: "topRight",
-    description: "project-memories",
+    stringLocalize: "project-memories",
+    imageUrl: null,
+    linkButton: "https://github.com/",
   },
   {
     id: 5,
@@ -37,7 +46,9 @@ const pages = [
     relativeUrl: "project-wordlesolver",
     bookType: "book",
     region: "topRight",
-    description: "project-wordlesolver",
+    stringLocalize: "project-wordlesolver",
+    imageUrl: null,
+    linkButton: null,
   },
   {
     id: 6,
@@ -45,7 +56,9 @@ const pages = [
     relativeUrl: "project-resume",
     bookType: "book",
     region: "topRight",
-    description: "project-resume",
+    stringLocalize: "project-resume",
+    imageUrl: null,
+    linkButton: null,
   },
 ];
 

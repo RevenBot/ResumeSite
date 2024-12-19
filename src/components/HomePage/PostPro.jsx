@@ -12,7 +12,7 @@ function Postpro() {
     <Effects disableGamma>
       <filmPass args={[0.2, 0.5, 1500, false]} />
       <waterPass ref={water} factor={1} />
-      <unrealBloomPass args={[undefined, 1.25, 1, 0]} />
+      <unrealBloomPass args={[undefined, 0.7, 1, 0]} />
     </Effects>
   );
 }

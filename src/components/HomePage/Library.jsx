@@ -6,7 +6,6 @@ const Library = () => {
     <>
       <primitive
         object={library.scene}
-        onClick={(e) => console.log(e)}
         position={[0, -100, 0]}
         rotation={[0, Math.PI, 0]}
         children-0-castShadow
