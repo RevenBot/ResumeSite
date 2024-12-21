@@ -21,7 +21,7 @@ const Board = ({ page, onClickBack }) => {
   });
   return (
     <>
-      <mesh position={[-700, 300, -500]} rotation={[0, Math.PI / 4, 0]}>
+      <mesh position={[-700, 150, -500]} rotation={[0, Math.PI / 4, 0]}>
         <Root pixelSize={2} sizeX={200} sizeY={800} flexDirection="row">
           <Container
             flexDirection="row"
@@ -35,11 +35,12 @@ const Board = ({ page, onClickBack }) => {
           </Container>
         </Root>
       </mesh>
-      <mesh position={[0, 300, -500]}>
+      <mesh position={[0, 150, -500]}>
         <Root pixelSize={6} sizeX={1200} sizeY={800} flexDirection="row">
           <Container
             borderWidth={15}
             borderColor="#333"
+            backgroundColor={page ? "#000" : "#333"}
             flexDirection="column"
             alignItems="center"
             justifyContent="space-between"
@@ -78,7 +79,7 @@ const Board = ({ page, onClickBack }) => {
           </Container>
         </Root>
       </mesh>
-      <mesh position={[800, 300, -500]} rotation={[0, (11 * Math.PI) / 6, 0]}>
+      <mesh position={[800, 150, -500]} rotation={[0, (11 * Math.PI) / 6, 0]}>
         <Root pixelSize={2} sizeX={200} sizeY={800} flexDirection="row">
           <Container
             flexDirection="row"
