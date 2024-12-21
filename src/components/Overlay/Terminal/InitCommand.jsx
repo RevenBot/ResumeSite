@@ -1,3 +1,5 @@
+import TutoCommand from "./TutoCommand";
+
 function InitCommand() {
   return (
     <>
@@ -77,6 +79,16 @@ function InitCommand() {
       </span>
       built in 3.41
       <br />
+      <span
+        style={{
+          color: "var(--green-700)",
+        }}
+      >
+        ➜{" "}
+      </span>
+      tuto
+      <br />
+      <TutoCommand />
     </>
   );
 }

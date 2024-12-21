@@ -5,7 +5,7 @@ import { createContext } from "react";
 import { useMemo } from "react";
 import { useState } from "react";
 import { useRef } from "react";
-import {  Vector3 } from "three";
+import { Vector3 } from "three";
 
 export const context = createContext();
 
@@ -41,8 +41,8 @@ export function NodesPhysics({ children }) {
   const group = useRef();
   const groupRevert = useRef();
   const [nodes, set] = useState([]);
-  const vec = new Vector3();
   const lines = useMemo(() => {
+    const vec = new Vector3();
     const lines = [];
     for (let node of nodes)
       node.connectedTo

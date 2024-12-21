@@ -4,7 +4,7 @@ import { BoxGeometry, MeshStandardMaterial } from "three";
 import { MeshBasicMaterial } from "three";
 
 const Figures = ({ images }) => {
-  const boxGeometry = useMemo(() => new BoxGeometry());
+  const boxGeometry = useMemo(() => new BoxGeometry(), []);
   const materialMain = useMemo(
     () =>
       new MeshStandardMaterial({
@@ -13,6 +13,7 @@ const Figures = ({ images }) => {
         roughness: 0.5,
         envMapIntensity: 2,
       }),
+    [],
   );
   const materialBasic = useMemo(
     () =>
@@ -21,6 +22,7 @@ const Figures = ({ images }) => {
         fog: false,
         color: "#fff",
       }),
+    [],
   );
 
   return (

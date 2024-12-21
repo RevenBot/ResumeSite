@@ -11,6 +11,7 @@ import ModeHelp from "./ModeHelp";
 import InitCommand from "./InitCommand";
 import GoToHelp from "./GoToHelp";
 import { useLocation } from "wouter";
+import TutoCommand from "./TutoCommand";
 
 function Terminal() {
   const { setBufferedContent, setTemporaryContent } =
@@ -37,20 +38,20 @@ function Terminal() {
         return <>Switch mode</>;
       }
     },
-    goto: (frame) => {
-      if (frame === "help") {
+    goto: (page) => {
+      if (page === "help") {
         return <GoToHelp />;
       }
-      if (frame === "about-me") {
-        setLocation("/frame/about-me/");
+      if (page === "about-me") {
+        setLocation("/page/about-me/");
         return <>goto about-me</>;
-      } else if (frame === "skills") {
-        setLocation("/frame/skills/");
+      } else if (page === "skills") {
+        setLocation("/page/skills/");
         return <>goto skills</>;
-      } else if (frame === "contacts") {
-        setLocation("/frame/contacts/");
+      } else if (page === "contacts") {
+        setLocation("/page/contacts/");
         return <>goto contacts</>;
-      } else if (frame === "index") {
+      } else if (page === "index") {
         setLocation("/");
         return <>goto index</>;
       }
@@ -97,6 +98,8 @@ function Terminal() {
         </>
       );
     },
+
+    tuto: () => <TutoCommand />,
   };
 
   const init = useCallback(async () => {
