@@ -1,5 +1,5 @@
 import { useFrame } from "@react-three/fiber";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { MathUtils, Vector3 } from "three";
 import { Container, Image, Root, Text } from "@react-three/uikit";
 import { Button } from "../default/button";
@@ -7,11 +7,37 @@ import { useLocation } from "wouter";
 import { useTranslation } from "react-i18next";
 
 const Board = ({ page, onClickBack }) => {
-  const [intialPosition] = useState(new Vector3(0, 50, 160));
-  const boardPosition = useMemo(() => new Vector3(0, 150, 0), []);
   const [, setLocation] = useLocation();
   const { t } = useTranslation("pages");
   const { t: tra } = useTranslation();
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" && window.innerWidth < 1024,
+  );
+  const intialPosition = useMemo(() => {
+    if (!isMobile) {
+      return new Vector3(0, 50, 160);
+    } else {
+      return new Vector3(0, 50, 240);
+    }
+  }, [isMobile]);
+
+  const boardPosition = useMemo(() => {
+    if (!isMobile) {
+      return new Vector3(0, 200, 0);
+    } else {
+      return new Vector3(0, 200, 50);
+    }
+  }, [isMobile]);
+
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 1024);
+    }
+
+    if (typeof window !== "undefined") {
+      handleResize();
+    }
+  });
 
   useFrame((state, dt) => {
     state.camera.position.lerp(
@@ -21,7 +47,10 @@ const Board = ({ page, onClickBack }) => {
   });
   return (
     <>
-      <mesh position={[-700, 150, -500]} rotation={[0, Math.PI / 4, 0]}>
+      <mesh
+        position={isMobile ? [-200, -300, -500] : [-700, 150, -500]}
+        rotation={[0, Math.PI / 4, 0]}
+      >
         <Root pixelSize={2} sizeX={200} sizeY={800} flexDirection="row">
           <Container
             flexDirection="row"
@@ -79,7 +108,10 @@ const Board = ({ page, onClickBack }) => {
           </Container>
         </Root>
       </mesh>
-      <mesh position={[800, 150, -500]} rotation={[0, (11 * Math.PI) / 6, 0]}>
+      <mesh
+        position={isMobile ? [300, -300, -430] : [800, 150, -500]}
+        rotation={[0, (7 * Math.PI) / 4, 0]}
+      >
         <Root pixelSize={2} sizeX={200} sizeY={800} flexDirection="row">
           <Container
             flexDirection="row"
