@@ -5,6 +5,7 @@ import { Canvas } from "@react-three/fiber";
 import PlanePhysics from "../../ShowRoom/PlanePhysics";
 import file from "../../../assets/textures/projects720p.hdr";
 import { Environment } from "@react-three/drei";
+import Mobile from "../mobile";
 
 const WordleSolver = () => {
   const images = [
@@ -26,17 +27,20 @@ const WordleSolver = () => {
   ];
 
   return (
-    <Canvas onPointerDown={(e) => e.target.requestPointerLock()}>
-      <ambientLight color={"#fff"} intensity="1" />
-      <Physics timeStep="vary">
-        <RigidBody type="fixed" colliders="trimesh">
-          <PlanePhysics />
-        </RigidBody>
-        <Figures images={images} />
-        <Player />
-      </Physics>
-      <Environment files={file} background />
-    </Canvas>
+    <>
+      <Mobile />
+      <Canvas onPointerDown={(e) => e.target.requestPointerLock()}>
+        <ambientLight color={"#fff"} intensity="1" />
+        <Physics timeStep="vary">
+          <RigidBody type="fixed" colliders="trimesh">
+            <PlanePhysics />
+          </RigidBody>
+          <Figures images={images} />
+          <Player />
+        </Physics>
+        <Environment files={file} background />
+      </Canvas>
+    </>
   );
 };
 

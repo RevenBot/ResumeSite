@@ -5,6 +5,7 @@ import PlanePhysics from "../../ShowRoom/PlanePhysics";
 import Player from "../../ShowRoom/Player";
 import WordPhysical from "./WordPhysics";
 import MonitorStaticPhysic from "../AboutMe/MonitorStaticPhysic";
+import Mobile from "../mobile";
 
 function Contact() {
   const words = useMemo(
@@ -29,22 +30,25 @@ function Contact() {
   );
 
   return (
-    <Canvas onPointerDown={(e) => e.target.requestPointerLock()}>
-      <ambientLight color={"#fff"} intensity="1" />
-      <Physics timeStep="vary">
-        <PlanePhysics />
-        <Player />
-        {words.map((item, i) => (
-          <WordPhysical key={i} wordData={item} />
-        ))}
-        <MonitorStaticPhysic position={[-7, 0, -4]} scale={1.5}>
-          {`:)  HR  :)`}
-        </MonitorStaticPhysic>
-        <MonitorStaticPhysic position={[6, 0, -1.5]} scale={1.2}>
-          {`^ ^ Projects ^ ^`}
-        </MonitorStaticPhysic>
-      </Physics>
-    </Canvas>
+    <>
+      <Mobile />
+      <Canvas onPointerDown={(e) => e.target.requestPointerLock()}>
+        <ambientLight color={"#fff"} intensity="1" />
+        <Physics timeStep="vary">
+          <PlanePhysics />
+          <Player />
+          {words.map((item, i) => (
+            <WordPhysical key={i} wordData={item} />
+          ))}
+          <MonitorStaticPhysic position={[-7, 0, -4]} scale={1.5}>
+            {`:)  HR  :)`}
+          </MonitorStaticPhysic>
+          <MonitorStaticPhysic position={[6, 0, -1.5]} scale={1.2}>
+            {`^ ^ Projects ^ ^`}
+          </MonitorStaticPhysic>
+        </Physics>
+      </Canvas>
+    </>
   );
 }
 

@@ -1,7 +1,8 @@
 import { Gltf, KeyboardControls, SpotLight } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 import { CuboidCollider } from "@react-three/rapier";
 import Controller from "ecctrl";
-import { Suspense, useEffect } from "react";
+import { Suspense } from "react";
 import { useRef } from "react";
 
 const Player = () => {
@@ -16,12 +17,12 @@ const Player = () => {
   const ref = useRef();
   const light = useRef();
 
-  useEffect(() => {
+  useFrame(() => {
     if (light.current != null && ref.current != null) {
       light.current.target.updateMatrixWorld();
       light.current.target = ref.current;
     }
-  }, []);
+  });
 
   return (
     <KeyboardControls map={keyboardMap}>
