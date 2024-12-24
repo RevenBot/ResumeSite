@@ -1,4 +1,4 @@
-import { PresentationControls, Stats } from "@react-three/drei";
+import { PresentationControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Swarm from "./Swarm";
 import Postpro from "./PostPro";
@@ -33,7 +33,6 @@ const HomePage = () => {
       <Astronaut />
       <Swarm count={20000} />
       <Postpro />
-      <Stats />
     </Canvas>
   );
 };
