@@ -51,7 +51,7 @@ const AboutMe = () => {
                 position={[-2, 4, 0]}
                 font={"/Inter_Medium_Regular.json?url"}
               >
-                {t("phrase")}
+                <Suspense fallback={null}>{t("phrase")}</Suspense>
               </Text3D>
             </RigidBody>
             <MonitorStaticPhysic
