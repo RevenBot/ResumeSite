@@ -1,8 +1,8 @@
 {
-  "about-me" : "Junior Full Stack Developer, determined to grow professionally,always eager to learn, and ready to face new challenges.",
-  "skills" : "Always ready to adapt and learn.",
-  "contacts" : "Interested in my work? Contact me!",
-  "project-memories" : "Memories è un sito per condividere ricordi di animali o altre categorie. Sviluppato con Django, utilizza SQLite per il database, Bootstrap per il design responsivo e JavaScript per l’interattività.",
-  "project-wordlesolver" : "Worldle Solver è un'app sviluppata con .NET MAUI Blazor per risolvere il gioco Wordle. L'app utilizza algoritmi logici e un'interfaccia intuitiva per suggerire possibili soluzioni in base ai tuoi progressi.",
-  "project-resume" : "Resume è un sito portfolio creato con React.js e React Three Fiber per mostrare esperienze, competenze e progetti in modo interattivo. Integra grafica 3D per un’esperienza moderna e accattivante."
+  "about-me" : "Junior Full Stack Developer, determinato a crescere professionalmente, sempre desideroso di imparare e affrontare nuove sfide.",
+  "skills" : "Sempre pronto ad adattarmi e imparare.",
+  "contacts" : "Interessato al mio lavoro? Contattami!",
+  "project-memories" : "Memories e' un sito per condividere ricordi di animali o altre categorie. Sviluppato con Django, utilizza SQLite per il database, Bootstrap per il design responsivo e JavaScript per l’interattivita.",
+  "project-wordlesolver" : "Worldle Solver e' un'app sviluppata con .NET MAUI Blazor per risolvere il gioco Wordle. L'app utilizza algoritmi logici e un'interfaccia intuitiva per suggerire possibili soluzioni in base ai tuoi progressi.",
+  "project-resume" : "Resume e' un sito portfolio creato con React.js e React Three Fiber per mostrare esperienze, competenze e progetti in modo interattivo. Integra grafica 3D per un’esperienza moderna e accattivante."
 }
