@@ -11,7 +11,7 @@ import { Canvas } from "@react-three/fiber";
 import Mobile from "../mobile";
 
 const AboutMe = () => {
-  const { t } = useTranslation("about-me");
+  const { t, ready } = useTranslation("about-me", { useSuspense: false });
 
   const material = useMemo(
     () =>
@@ -51,7 +51,7 @@ const AboutMe = () => {
                 position={[-2, 4, 0]}
                 font={"/Inter_Medium_Regular.json?url"}
               >
-                <Suspense fallback={null}>{t("phrase")}</Suspense>
+                {ready && t("phrase")}
               </Text3D>
             </RigidBody>
             <MonitorStaticPhysic
