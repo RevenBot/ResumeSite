@@ -11,7 +11,7 @@ function MonitorStatic({ children, ...props }) {
   const ref = useRef();
 
   return (
-    <group ref={ref} {...props} dispose={null}>
+    <group ref={ref} {...props}>
       <ScreenText frame="Object_230" panel="Object_231" {...props}>
         {children}
       </ScreenText>

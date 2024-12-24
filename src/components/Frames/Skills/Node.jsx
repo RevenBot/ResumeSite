@@ -61,7 +61,7 @@ const Node = forwardRef(
           color={hovered ? "#ff1050" : color}
         >
           <Text3D
-            scale={props.scale}
+            scale={props.scale * 0.15}
             position={[-0.5, 0.3, 0.01]}
             {...fontProps}
           >

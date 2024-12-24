@@ -7,6 +7,7 @@ import framesComponents from "../Frames";
 import Caos from "./Caos";
 import { useTranslation } from "react-i18next";
 import TimeoutMessage from "../Message/TimeoutMessage";
+import { AdaptiveDpr } from "@react-three/drei";
 
 const Background = () => {
   const { t } = useTranslation();
@@ -30,13 +31,10 @@ const Background = () => {
   return (
     <>
       <TimeoutMessage />
-      <Canvas
-        eventPrefix="client"
-        camera={{ fov: 70, near: 1, far: 10000, position: [0, 0, 100] }}
-        onPointerLeave={() => reset()}
-      >
+      <Canvas eventPrefix="client" onPointerLeave={() => reset()}>
         {mode && <Caos words={words} />}
         {!mode && <CarouselContainer frames={frames} />}
+        <AdaptiveDpr/>
       </Canvas>
     </>
   );

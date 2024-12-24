@@ -7,80 +7,58 @@ import Skills from "./Skills/Skills";
 
 const frames = [
   {
-    id: "about-me",
-    title: "About me",
-    footer: "1",
+    id: 1,
+    name: "About Me",
+    relativeUrl: "about-me",
+    bookType: "magicbook",
+    region: "topLeft",
     description: "about-me",
-    mesh: <AboutMe />,
+    component: AboutMe,
   },
   {
-    id: "skills",
-    title: "Skills",
-    footer: "2",
+    id: 2,
+    name: "Skills",
+    relativeUrl: "skills",
+    bookType: "oldbook1",
+    region: "topLeft",
     description: "skills",
-    mesh: <Skills />,
+    component: Skills,
   },
   {
-    id: "contacts",
-    title: "Contacts",
-    footer: "3",
+    id: 3,
+    name: "Contacts",
+    relativeUrl: "contacts",
+    bookType: "oldbook1",
+    region: "topLeft",
     description: "contacts",
-    mesh: <Contact />,
+    component: Contact,
   },
   {
-    id: "project-memories",
-    title: "Memories",
-    footer: "4",
-    description: "default",
-    mesh: <Memories />,
+    id: 4,
+    name: "Memories",
+    relativeUrl: "project-memories",
+    bookType: "book",
+    region: "topRight",
+    description: "project-memories",
+    component: Memories,
   },
   {
-    id: "project-wordle",
-    title: "Wordle Solver",
-    footer: "5",
-    description: "default",
-    mesh: <WordleSolver />,
+    id: 5,
+    name: "Wordle Solver",
+    relativeUrl: "project-wordlesolver",
+    bookType: "book",
+    region: "topRight",
+    description: "project-wordlesolver",
+    component: WordleSolver,
   },
   {
-    id: "resume",
-    title: "Resume",
-    footer: "6",
-    description: "default",
-    mesh: <Resume />,
-  },
-  {
-    id: "07",
-    title: "",
-    footer: "7",
-    description: "default",
-    mesh: (
-      <mesh
-        visible
-        position={[0, 0, 0]}
-        scale={0.6}
-        rotation={[0, Math.PI / 6, Math.PI / 3]}
-      >
-        <dodecahedronGeometry args={[1, 0]} />
-        <meshStandardMaterial color="yellow" />
-      </mesh>
-    ),
-  },
-  {
-    id: "08",
-    title: "",
-    footer: "8",
-    description: "default",
-    mesh: (
-      <mesh
-        visible
-        position={[0, 0, 0]}
-        scale={0.5}
-        rotation={[0, Math.PI / 2, 0]}
-      >
-        <icosahedronGeometry args={[1, 1]} />
-        <meshStandardMaterial color="green" />
-      </mesh>
-    ),
+    id: 6,
+    name: "Resume",
+    relativeUrl: "project-resume",
+    bookType: "book",
+    region: "topRight",
+    description: "project-resume",
+    component: Resume,
   },
 ];
 

@@ -19,7 +19,7 @@ function Banner(props) {
 
   useFrame((state, delta) => {
     ref.current.material.time.value += Math.abs(scroll.delta) * 4;
-    ref.current.material.map.offset.x += delta / 4;
+    ref.current.material.map.offset.x += delta / 8;
   });
 
   return (

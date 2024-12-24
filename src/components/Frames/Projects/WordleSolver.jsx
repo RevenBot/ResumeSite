@@ -1,39 +1,46 @@
-import ActiveCard from "./Card";
+import Figures from "./../../ShowRoom/Figures";
+import { Physics, RigidBody } from "@react-three/rapier";
+import Player from "../../ShowRoom/Player";
+import { Canvas } from "@react-three/fiber";
+import PlanePhysics from "../../ShowRoom/PlanePhysics";
+import file from "../../../assets/textures/projects720p.hdr";
+import { Environment } from "@react-three/drei";
+import Mobile from "../mobile";
 
 const WordleSolver = () => {
+  const images = [
+    {
+      position: [7, 0, -2],
+      rotation: [0, (11 * Math.PI) / 6, 0],
+      url: "/img/projects/wordle-solver/main.png?url",
+    },
+    {
+      position: [-7, 0, -2],
+      rotation: [0, -(11 * Math.PI) / 6, 0],
+      url: "/img/projects/wordle-solver/solver.png?url",
+    },
+    {
+      position: [0, 0, -8],
+      rotation: [0, 0, 0],
+      url: "/img/projects/wordle-solver/results.png?url",
+    },
+  ];
+
   return (
-    <group scale={0.4}>
-      <ActiveCard
-        position={[-10, 0, -9]}
-        rotation={[0, Math.PI / 4, 0]}
-        url={"/img/projects/wordle-solver/main.png?url"}
-        textContainer={{
-          position: [-8, 1, 0.1],
-          anchorX: "left",
-          text: "HomePage",
-        }}
-      />
-      <ActiveCard
-        url={"/img/projects/wordle-solver/solver.png?url"}
-        position={[0, 0, -12]}
-        rotation={[0, 0, 0]}
-        textContainer={{
-          position: [1, -3, 0.1],
-          anchorX: "right",
-          text: "Solver",
-        }}
-      />
-      <ActiveCard
-        url={"/img/projects/wordle-solver/results.png?url"}
-        position={[10, 0, -9]}
-        rotation={[0, (7 * Math.PI) / 4, 0]}
-        textContainer={{
-          position: [7, 1, 0.1],
-          anchorX: "right",
-          text: "Results",
-        }}
-      />
-    </group>
+    <>
+      <Mobile />
+      <Canvas onPointerDown={(e) => e.target.requestPointerLock()}>
+        <ambientLight color={"#fff"} intensity="1" />
+        <Physics timeStep="vary">
+          <RigidBody type="fixed" colliders="trimesh">
+            <PlanePhysics />
+          </RigidBody>
+          <Figures images={images} />
+          <Player />
+        </Physics>
+        <Environment files={file} background />
+      </Canvas>
+    </>
   );
 };
 

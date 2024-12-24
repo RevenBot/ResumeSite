@@ -1,18 +1,18 @@
 import { useMemo } from "react";
 import Word from "./Word";
-import * as THREE from "three";
+import { Spherical, Vector3 } from "three";
 
 function Cloud({ words, radius = 20 }) {
   // Create a count x count random words with spherical distribution
   const wordsObjects = useMemo(() => {
     const temp = [];
-    const spherical = new THREE.Spherical();
+    const spherical = new Spherical();
     const phiSpan = Math.PI / (words.length + 1);
     const thetaSpan = (Math.PI * 2) / words.length;
     for (let i = 1; i < words.length + 1; i++)
       for (let j = 0; j < words.length; j++)
         temp.push([
-          new THREE.Vector3().setFromSpherical(
+          new Vector3().setFromSpherical(
             spherical.set(radius, phiSpan * i, thetaSpan * j),
           ),
           words[j].text,

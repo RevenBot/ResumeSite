@@ -1,10 +1,13 @@
 import { createRef, useState } from "react";
-import { Nodes } from "./Nodes";
 import { Environment } from "@react-three/drei";
-import file from "../../../assets/textures/nebula.hdr";
-import { useFrame } from "@react-three/fiber";
-import { useRoute } from "wouter";
-import Node from "./Node";
+import file from "../../../assets/textures/nebula720p.hdr";
+import { Canvas } from "@react-three/fiber";
+import { Physics } from "@react-three/rapier";
+import PlanePhysics from "../../ShowRoom/PlanePhysics";
+import Player from "../../ShowRoom/Player";
+import NodePhysical from "./NodePhysics";
+import { NodesPhysics } from "./NodesPhysics";
+import Mobile from "../mobile";
 
 function Skills() {
   const [
@@ -26,139 +29,142 @@ function Skills() {
       postgresql,
     ],
   ] = useState(() => [...Array(15)].map(createRef));
-  const [match] = useRoute("/frame/:id");
-  useFrame((state) => {
-    if (match) state.scene.backgroundRotation.y = 1.4;
-    else state.scene.backgroundRotation.y = -0.2;
-  });
 
   return (
-    <group>
-      <Nodes>
-        <Node
-          ref={frontend}
-          name="frontend"
-          color="#204090"
-          position={[-0.9, 1, -0.9]}
-          scale={0.2}
-          connectedTo={[backend]}
-        />
-        <Node
-          ref={html}
-          name="    html"
-          color="#fcba03"
-          position={[-1.4, 0, -0.9]}
-          scale={0.2}
-          connectedTo={[frontend, react, blazor]}
-        />
-        <Node
-          ref={css}
-          name="    css"
-          color="#001aff"
-          position={[-1.4, -0.3, -0.9]}
-          scale={0.2}
-          connectedTo={[frontend, react, blazor]}
-        />
-        <Node
-          ref={javascript}
-          name="javascript"
-          color="#204090"
-          position={[-1.4, -0.6, -0.9]}
-          scale={0.2}
-          connectedTo={[frontend, react, blazor]}
-        />
-        <Node
-          ref={react}
-          name="   react"
-          color="#00bbff"
-          position={[-0.9, -0, -0.9]}
-          scale={0.2}
-          connectedTo={[frontend, graphql]}
-        />
-        <Node
-          ref={blazor}
-          name="blazor"
-          color="#000dff"
-          position={[-0.9, -0.3, -0.9]}
-          scale={0.2}
-          connectedTo={[frontend, restApi]}
-        />
+    <>
+      <Mobile />
+      <Canvas onPointerDown={(e) => e.target.requestPointerLock()}>
+        <ambientLight color={"#fff"} intensity="1" />
+        <Physics timeStep="vary">
+          <PlanePhysics />
+          <Player />
+          <NodesPhysics>
+            <NodePhysical
+              ref={frontend}
+              name="frontend"
+              color="#204090"
+              position={[-2, 1, -20]}
+              scale={1.6}
+              connectedTo={[backend]}
+            />
+            <NodePhysical
+              ref={html}
+              name="    html"
+              color="#fcba03"
+              position={[-12, 1, -12]}
+              scale={1.6}
+              connectedTo={[frontend, react, blazor]}
+            />
+            <NodePhysical
+              ref={css}
+              name="    css"
+              color="#001aff"
+              position={[-12, 1, -6]}
+              scale={1.6}
+              connectedTo={[frontend, react, blazor]}
+            />
+            <NodePhysical
+              ref={javascript}
+              name="javascript"
+              color="#204090"
+              position={[-12, 1, -2]}
+              scale={1.6}
+              connectedTo={[frontend, react, blazor]}
+            />
+            <NodePhysical
+              ref={react}
+              name="   react"
+              color="#00bbff"
+              position={[-6, 1, -12]}
+              scale={1.6}
+              connectedTo={[frontend, graphql]}
+            />
+            <NodePhysical
+              ref={blazor}
+              name="blazor"
+              color="#000dff"
+              position={[-6, 1, -6]}
+              scale={1.6}
+              connectedTo={[frontend, restApi]}
+            />
 
-        <Node
-          ref={backend}
-          name="backend"
-          color="#ff0000"
-          position={[0.9, 1, -0.9]}
-          scale={0.2}
-          connectedTo={[csharp, python, dotnet]}
-        />
-        <Node
-          ref={csharp}
-          name="      c#"
-          color="#00ff1a"
-          position={[1.4, 0, -0.9]}
-          scale={0.2}
-          connectedTo={[]}
-        />
-        <Node
-          ref={python}
-          name="python"
-          color="#eeff00"
-          position={[1.4, -0.3, -0.9]}
-          scale={0.2}
-          connectedTo={[]}
-        />
-        <Node
-          ref={dotnet}
-          name="dotnet"
-          color="#204090"
-          position={[0.9, 0, -0.9]}
-          scale={0.2}
-          connectedTo={[csharp, mysql, postgresql]}
-        />
-        <Node
-          ref={django}
-          name="django"
-          color="#204090"
-          position={[0.9, -0.3, -0.9]}
-          scale={0.2}
-          connectedTo={[python, mysql, postgresql]}
-        />
-        <Node
-          ref={graphql}
-          name="graphql"
-          color="#ff00ee"
-          position={[0, 0, -0.9]}
-          scale={0.2}
-          connectedTo={[dotnet, django]}
-        />
-        <Node
-          ref={restApi}
-          name="restApi"
-          color="#204090"
-          position={[0, -0.3, -0.9]}
-          scale={0.2}
-          connectedTo={[dotnet, django]}
-        />
-        <Node
-          ref={postgresql}
-          name="PostgreSQL"
-          color="#00b3ff"
-          position={[0.9, -0.8, -0.9]}
-          scale={0.2}
-          connectedTo={[]}
-        />
-        <Node
-          ref={mysql}
-          name="MySQL"
-          color="#ffa200"
-          position={[1.4, -0.8, -0.9]}
-          scale={0.2}
-          connectedTo={[]}
-        />
-      </Nodes>
-      <Environment files={file} background />
-    </group>
+            <NodePhysical
+              ref={backend}
+              name="backend"
+              color="#ff0000"
+              position={[2, 1, -20]}
+              scale={1.6}
+              connectedTo={[csharp, python, dotnet]}
+            />
+            <NodePhysical
+              ref={csharp}
+              name="      c#"
+              color="#00ff1a"
+              position={[12, 1, -12]}
+              scale={1.6}
+              connectedTo={[]}
+            />
+            <NodePhysical
+              ref={python}
+              name="python"
+              color="#eeff00"
+              position={[12, 1, -6]}
+              scale={1.6}
+              connectedTo={[]}
+            />
+            <NodePhysical
+              ref={dotnet}
+              name="dotnet"
+              color="#204090"
+              position={[6, 1, -12]}
+              scale={1.6}
+              connectedTo={[csharp, mysql, postgresql]}
+            />
+            <NodePhysical
+              ref={django}
+              name="django"
+              color="#204090"
+              position={[6, 1, -6]}
+              scale={1.6}
+              connectedTo={[python, mysql, postgresql]}
+            />
+            <NodePhysical
+              ref={graphql}
+              name="graphql"
+              color="#ff00ee"
+              position={[0, 1, -10]}
+              scale={1.6}
+              connectedTo={[dotnet, django]}
+            />
+            <NodePhysical
+              ref={restApi}
+              name="restApi"
+              color="#204090"
+              position={[0, 1, -7]}
+              scale={1.6}
+              connectedTo={[dotnet, django]}
+            />
+            <NodePhysical
+              ref={postgresql}
+              name="PostgreSQL"
+              color="#00b3ff"
+              position={[7, 1, -2]}
+              scale={1.6}
+              connectedTo={[]}
+            />
+            <NodePhysical
+              ref={mysql}
+              name="MySQL"
+              color="#ffa200"
+              position={[10, 1, -2]}
+              scale={1.6}
+              connectedTo={[]}
+            />
+          </NodesPhysics>
+        </Physics>
+        <Environment files={file} background />
+      </Canvas>
+    </>
   );
 }
 
