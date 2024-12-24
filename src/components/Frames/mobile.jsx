@@ -14,6 +14,12 @@ const Mobile = () => {
     if (typeof window !== "undefined") {
       handleResize();
     }
+    window.addEventListener("resize", handleResize);
+    return () => {
+      // remove event listener when the component is unmounted to not cause any memory leaks
+      // otherwise the event listener will continue to be active
+      window.removeEventListener("resize", handleResize);
+    };
   });
   if (isMobile) return <EcctrlJoystick />;
   else null;
