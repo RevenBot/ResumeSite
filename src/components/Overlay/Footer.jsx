@@ -15,7 +15,7 @@ function Footer() {
             color: "var(--highlight-text-color)",
           }}
         >
-          Repo RevenBot
+          <img src="https://skillicons.dev/icons?i=github" alt="repo" />
         </a>
         <div>06/03/2024</div>
       </div>
