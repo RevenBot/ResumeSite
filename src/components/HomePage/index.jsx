@@ -33,7 +33,6 @@ const HomePage = () => {
       <Astronaut />
       <Swarm count={20000} />
       <Postpro />
-      <Stats />
     </Canvas>
   );
 };

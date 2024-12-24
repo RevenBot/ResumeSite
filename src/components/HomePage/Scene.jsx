@@ -23,7 +23,7 @@ const Scene = ({ objects }) => {
 
   const [hoverName, setName] = useState(null);
 
-  const objectSize = 10; // Dimensione di ogni oggetto
+  const objectSize = 1; // Dimensione di ogni oggetto
   const [hovered, hover] = useState(false);
   useCursor(hovered, "pointer");
 
@@ -94,7 +94,7 @@ const Scene = ({ objects }) => {
           key={item.id}
           bookType={item.bookType}
           position={[item.position.x, item.position.y, item.position.z]}
-          onClick={() => updatePageId(item)}
+          onClick={(e) => { updatePageId(item) ; e.stopPropagation();}}
           onPointerEnter={(e) => OnPointerOver(e, item)}
           onPointerLeave={(e) => OnPointerOut(e)}
         />
