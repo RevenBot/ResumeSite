@@ -13,17 +13,15 @@ const Book = ({ bookType, bookName, ...props }) => {
       onPointerOut={() => setHover(false)}
       {...props}
     >
-      <Select enabled>
-        <Text
-          color={hover ? "#964B00" : "#444"}
-          position={[2.5, 10, 15]}
-          rotation={[0, 0, Math.PI / 2]}
-          scale={3}
-        >
-          {bookName}
-        </Text>
-        <primitive object={scene.clone()} children-0-castShadow />
-      </Select>
+      <Text
+        color={hover ? "#964B00" : "#444"}
+        position={[2.5, 10, 15]}
+        rotation={[0, 0, Math.PI / 2]}
+        scale={3}
+      >
+        {bookName}
+      </Text>
+      <primitive object={scene.clone()} children-0-castShadow />
     </group>
   );
 };

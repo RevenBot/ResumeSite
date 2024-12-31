@@ -1,4 +1,4 @@
-import { extend, useFrame } from "@react-three/fiber";
+import { extend } from "@react-three/fiber";
 import { FilmPass, WaterPass, UnrealBloomPass, LUTPass } from "three-stdlib";
 import { Effects } from "@react-three/drei";
 
