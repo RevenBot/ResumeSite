@@ -1,6 +1,5 @@
 import { Text } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
-import { Select } from "@react-three/postprocessing";
 import { useState } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
